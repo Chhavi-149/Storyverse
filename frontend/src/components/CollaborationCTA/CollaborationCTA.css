@@ -1,0 +1,85 @@
+.collaboration{
+    background:#0B0907;
+    padding:100px 8%;
+}
+
+.collaboration-card{
+
+    max-width:1300px;
+
+    margin:auto;
+
+    border-radius:30px;
+
+    padding:80px;
+
+    background:linear-gradient(
+    135deg,
+    #D4A43C,
+    #A87414
+    );
+
+    color:black;
+}
+
+.collaboration-content{
+
+    max-width:650px;
+}
+
+.tag{
+
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    margin-bottom:20px;
+}
+
+.collaboration h2{
+
+    font-size:3.5rem;
+
+    line-height:1.2;
+
+    margin-bottom:30px;
+}
+
+.description{
+
+    font-size:1.2rem;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+}
+
+.collaboration button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:black;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:18px 30px;
+
+    font-size:1rem;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.collaboration button:hover{
+
+    transform:translateY(-4px);
+}

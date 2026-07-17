@@ -1,10 +1,26 @@
+import { Routes, Route } from "react-router-dom";
+
+import LandingPage from "./pages/landing/LandingPage";
+import LoginPage from "./pages/login/LoginPage";
+import SignUpPage from "./pages/signup/SignUpPage";
+import DashboardPage from "./pages/dashboard/DashboardPage";
+import ExplorePage from "./pages/explore/ExplorePage";
+import EditorPage from "./pages/editor/EditorPage";
+import ReaderPage from "./pages/reader/ReaderPage";
+import ProfilePage from "./pages/profile/ProfilePage";
+
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900">
-      <h1 className="text-5xl font-bold text-pink-500">
-        Storyverse 🚀
-      </h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/explore" element={<ExplorePage />} />
+      <Route path="/editor" element={<EditorPage />} />
+      <Route path="/reader" element={<ReaderPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+    </Routes>
   );
 }
 

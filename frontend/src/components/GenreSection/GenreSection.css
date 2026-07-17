@@ -1,0 +1,60 @@
+.genre-section{
+    background:#0B0907;
+    padding:100px 8%;
+}
+
+.genre-container{
+    max-width:1300px;
+    margin:auto;
+}
+
+.genre-heading{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.genre-heading p{
+    color:#D4A43C;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.genre-heading h2{
+    color:white;
+    font-size:3rem;
+}
+
+.genre-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.genre-card{
+    background:#17120F;
+    border:1px solid #2F251C;
+    border-radius:18px;
+    padding:40px 20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.genre-card:hover{
+    transform:translateY(-8px);
+    border-color:#D4A43C;
+}
+
+.genre-icon{
+    color:#D4A43C;
+    margin-bottom:20px;
+}
+
+.genre-card h3{
+    color:white;
+    margin-bottom:12px;
+    font-size:1.4rem;
+}
+
+.genre-card p{
+    color:#B6A897;
+}
