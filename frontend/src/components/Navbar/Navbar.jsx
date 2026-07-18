@@ -1,4 +1,5 @@
 import { BookOpen, Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -6,7 +7,8 @@ function Navbar() {
       <div className="max-w-7xl mx-auto h-20 px-6 flex items-center justify-between">
 
         {/* Logo */}
-        <div className="flex items-center gap-3 cursor-pointer">
+        <Link to="/" className="flex items-center gap-3 cursor-pointer">
+
           <div className="w-11 h-11 rounded-lg bg-[#D4A43C] flex items-center justify-center">
             <BookOpen size={22} className="text-black" />
           </div>
@@ -14,14 +16,16 @@ function Navbar() {
           <h1 className="text-3xl font-bold text-[#F5EFE5]">
             Inkwell
           </h1>
-        </div>
+
+        </Link>
 
         {/* Desktop Menu */}
+
         <nav className="hidden lg:flex items-center gap-12 text-[#C8B9A8]">
 
-          <a href="#" className="hover:text-[#D4A43C] transition">
+          <Link to="/explore" className="hover:text-[#D4A43C] transition">
             Explore
-          </a>
+          </Link>
 
           <a href="#" className="hover:text-[#D4A43C] transition">
             Rankings
@@ -38,15 +42,22 @@ function Navbar() {
         </nav>
 
         {/* Right Side */}
+
         <div className="flex items-center gap-4">
 
-          <button className="hidden md:block border border-[#3A3028] text-[#F5EFE5] px-6 py-3 rounded-lg hover:border-[#D4A43C] transition">
+          <Link
+            to="/login"
+            className="hidden md:block border border-[#3A3028] text-[#F5EFE5] px-6 py-3 rounded-lg hover:border-[#D4A43C] transition"
+          >
             Log In
-          </button>
+          </Link>
 
-          <button className="bg-[#D4A43C] hover:bg-[#E5B54A] transition text-black font-semibold px-6 py-3 rounded-lg">
+          <Link
+            to="/signup"
+            className="bg-[#D4A43C] hover:bg-[#E5B54A] transition text-black font-semibold px-6 py-3 rounded-lg"
+          >
             Start Writing
-          </button>
+          </Link>
 
           <button className="lg:hidden text-white">
             <Menu size={28} />

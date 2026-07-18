@@ -1,9 +1,15 @@
-function SignUpPage() {
+import AuthLayout from "../../components/Auth/AuthLayout";
+import SignupForm from "../../components/Auth/SignupForm";
+
+function SignupPage() {
   return (
-    <div>
-      Sign Up Page
-    </div>
+    <AuthLayout
+      title="Create Account"
+      subtitle="Start your writing journey today."
+    >
+      <SignupForm />
+    </AuthLayout>
   );
 }
 
-export default SignUpPage;
+export default SignupPage;
