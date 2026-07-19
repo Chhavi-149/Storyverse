@@ -10,6 +10,7 @@ import ReaderPage from "./pages/reader/ReaderPage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import EditProfilePage from "./pages/editProfile/EditProfilePage";
 import StoryPage from "./pages/story/StoryPage";
+import CompetitionsPage from "./pages/Competitions/CompetitionsPage";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/edit-profile" element={<EditProfilePage />} />
       <Route path="/story" element={<StoryPage />} />
+      <Route path="/competitions" element={<CompetitionsPage />}/>
     </Routes>
   );
 }
