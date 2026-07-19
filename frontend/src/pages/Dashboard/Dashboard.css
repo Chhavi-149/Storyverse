@@ -1,0 +1,86 @@
+.story-card {
+  background: #151310;
+  border: 1px solid #2a2318;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.story-card:hover {
+  border-color: #c4933a40;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px #0005;
+}
+
+.btn-primary {
+  background: #c4933a;
+  color: #0d0b08;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: .2s;
+}
+
+.btn-primary:hover {
+  background: #e8b96a;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #2a2318;
+  color: #a89880;
+  text-transform: uppercase;
+}
+
+.badge-gold {
+  background: #c4933a20;
+  color: #c4933a;
+  border: 1px solid #c4933a30;
+}
+
+.nav-link {
+  color: #a89880;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.nav-link:hover {
+  color: #f0e6d0;
+}
+
+.text-gold { color:#c4933a; }
+.text-ink { color:#f0e6d0; }
+.text-ink-dim { color:#a89880; }
+.text-ink-faint { color:#5c4e3c; }
+
+.font-serif {
+  font-family: Georgia, serif;
+}
+
+.font-mono {
+  font-family: monospace;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.progress-bar {
+  height: 3px;
+  background: #2a2318;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg,#c4933a,#e8b96a);
+}

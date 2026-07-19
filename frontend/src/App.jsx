@@ -9,3 +9,19 @@ function App() {
 }
 
 export default App;
+
+// import ExplorePage from "./pages/Explore/ExplorePage";
+
+// function App() {
+//   return <ExplorePage />;
+// }
+
+// export default App;
+
+// import DashboardPage from "./pages/Dashboard/DashboardPage";
+
+// function App() {
+//   return <DashboardPage />;
+// }
+
+// export default App;
