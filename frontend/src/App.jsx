@@ -8,6 +8,7 @@ import ExplorePage from "./pages/explore/ExplorePage";
 import EditorPage from "./pages/editor/EditorPage";
 import ReaderPage from "./pages/reader/ReaderPage";
 import ProfilePage from "./pages/profile/ProfilePage";
+import EditProfilePage from "./pages/editProfile/EditProfilePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/editor" element={<EditorPage />} />
       <Route path="/reader" element={<ReaderPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/edit-profile" element={<EditProfilePage />} />
     </Routes>
   );
 }

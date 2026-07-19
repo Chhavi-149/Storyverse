@@ -23,19 +23,31 @@ function Navbar() {
 
         <nav className="hidden lg:flex items-center gap-12 text-[#C8B9A8]">
 
-          <Link to="/explore" className="hover:text-[#D4A43C] transition">
+          <Link
+            to="/explore"
+            className="hover:text-[#D4A43C] transition"
+          >
             Explore
           </Link>
 
-          <a href="#" className="hover:text-[#D4A43C] transition">
+          <a
+            href="#"
+            className="hover:text-[#D4A43C] transition"
+          >
             Rankings
           </a>
 
-          <a href="#" className="hover:text-[#D4A43C] transition">
+          <a
+            href="#"
+            className="hover:text-[#D4A43C] transition"
+          >
             Competitions
           </a>
 
-          <a href="#" className="hover:text-[#D4A43C] transition">
+          <a
+            href="#"
+            className="hover:text-[#D4A43C] transition"
+          >
             About
           </a>
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 import {
   Eye,
@@ -11,6 +11,8 @@ import {
 import { FcGoogle } from "react-icons/fc";
 
 function SignupForm() {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -79,6 +81,8 @@ function SignupForm() {
       console.log(formData);
 
       // Firebase Signup Code will come here later
+
+      navigate("/profile");
     }
   };
 
@@ -152,9 +156,7 @@ function SignupForm() {
           <button
             type="button"
             className="eye-btn"
-            onClick={() =>
-              setShowPassword(!showPassword)
-            }
+            onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? (
               <EyeOff size={20} />
@@ -190,9 +192,7 @@ function SignupForm() {
           <button
             type="button"
             className="eye-btn"
-            onClick={() =>
-              setShowConfirm(!showConfirm)
-            }
+            onClick={() => setShowConfirm(!showConfirm)}
           >
             {showConfirm ? (
               <EyeOff size={20} />

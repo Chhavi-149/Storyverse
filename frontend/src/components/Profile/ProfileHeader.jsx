@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function ProfileHeader() {
   return (
     <section className="profile-header">
@@ -23,9 +25,12 @@ function ProfileHeader() {
             Creating worlds one chapter at a time.
           </p>
 
-          <button className="edit-profile-btn">
+          <Link
+            to="/edit-profile"
+            className="edit-profile-btn"
+          >
             Edit Profile
-          </button>
+          </Link>
 
         </div>
 
