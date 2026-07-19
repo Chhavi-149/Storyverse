@@ -1,9 +1,14 @@
+import BackButton from "../../components/Common/BackButton";
 import EditProfileForm from "../../components/EditProfile/EditProfileForm";
 import "../../components/EditProfile/EditProfile.css";
 
 function EditProfilePage() {
   return (
     <main className="edit-profile-page">
+
+      <div className="page-top">
+        <BackButton />
+      </div>
 
       <div className="edit-profile-container">
 

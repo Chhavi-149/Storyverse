@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import BackButton from "../../components/Common/BackButton";
 
 import StoryHero from "../../components/Story/StoryHero";
 import StoryInfo from "../../components/Story/StoryInfo";
@@ -13,6 +14,10 @@ function StoryPage() {
       <Navbar />
 
       <main className="story-page">
+
+        <div className="page-top">
+          <BackButton />
+        </div>
 
         <StoryHero />
 

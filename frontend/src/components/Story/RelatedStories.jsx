@@ -58,6 +58,12 @@ function RelatedStories() {
 
               <p>{story.author}</p>
 
+              <span className="related-read-btn">
+
+                Read Story →
+
+              </span>
+
             </div>
 
           </Link>

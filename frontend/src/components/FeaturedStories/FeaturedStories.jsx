@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./FeaturedStories.css";
 
 const stories = [
@@ -43,9 +44,11 @@ function FeaturedStories() {
         <div className="story-grid">
           {stories.map((story) => (
             <div className="story-card" key={story.id}>
+
               <img src={story.image} alt={story.title} />
 
               <div className="story-content">
+
                 <span>{story.genre}</span>
 
                 <h3>{story.title}</h3>
@@ -53,11 +56,20 @@ function FeaturedStories() {
                 <p>By {story.author}</p>
 
                 <div className="story-footer">
-                  ⭐ {story.rating}
 
-                  <button>Read Story</button>
+                  <span>⭐ {story.rating}</span>
+
+                  <Link
+                    to="/story"
+                    className="read-story-btn"
+                  >
+                    Read Story
+                  </Link>
+
                 </div>
+
               </div>
+
             </div>
           ))}
         </div>

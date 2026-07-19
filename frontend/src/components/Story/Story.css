@@ -371,3 +371,33 @@ flex-direction:column;
 }
 
 }
+.page-top{
+
+max-width:1300px;
+
+margin:0 auto;
+
+padding:30px 30px 0;
+
+}
+.related-read-btn{
+
+display:inline-block;
+
+margin-top:18px;
+
+color:#D4A43C;
+
+font-weight:600;
+
+font-size:15px;
+
+transition:.3s;
+
+}
+
+.related-card:hover .related-read-btn{
+
+transform:translateX(5px);
+
+}

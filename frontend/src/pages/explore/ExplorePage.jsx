@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import BackButton from "../../components/Common/BackButton";
 
 import ExploreHero from "../../components/Explore/ExploreHero";
 import GenreFilter from "../../components/Explore/GenreFilter";
@@ -13,6 +14,10 @@ function ExplorePage() {
       <Navbar />
 
       <main className="explore-page">
+
+        <div className="page-top">
+          <BackButton />
+        </div>
 
         <ExploreHero />
 

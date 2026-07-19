@@ -1,5 +1,6 @@
 import "./Hero.css";
 import { BookOpen, PenLine } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
@@ -27,15 +28,15 @@ function Hero() {
 
         <div className="hero-buttons">
 
-          <button className="primary-btn">
+          <Link to="/explore" className="primary-btn">
             <BookOpen size={20} />
             Start Reading
-          </button>
+          </Link>
 
-          <button className="secondary-btn">
+          <Link to="/editor" className="secondary-btn">
             <PenLine size={20} />
             Start Writing
-          </button>
+          </Link>
 
         </div>
 

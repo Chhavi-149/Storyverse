@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import BackButton from "../../components/Common/BackButton";
 
 import DashboardHero from "../../components/Dashboard/DashboardHero";
 import ContinueReading from "../../components/Dashboard/ContinueReading";
@@ -16,6 +17,10 @@ function DashboardPage() {
       <Navbar />
 
       <main className="dashboard-page">
+
+        <div className="page-top">
+          <BackButton />
+        </div>
 
         <DashboardHero />
 

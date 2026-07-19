@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
+
 function StoryCard({ title, author, genre, rating }) {
   return (
-    <div className="bg-[#1B1612] rounded-2xl p-6 border border-yellow-500/20 hover:border-yellow-500 transition duration-300">
+    <Link
+      to="/story"
+      className="block bg-[#1B1612] rounded-2xl p-6 border border-yellow-500/20 hover:border-yellow-500 transition duration-300 hover:scale-[1.02]"
+    >
 
       <div className="h-40 rounded-xl bg-[#2A231C] flex items-center justify-center text-5xl">
         📖
@@ -26,7 +31,7 @@ function StoryCard({ title, author, genre, rating }) {
 
       </div>
 
-    </div>
+    </Link>
   );
 }
 
