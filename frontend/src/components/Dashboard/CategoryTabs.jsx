@@ -17,7 +17,7 @@ function CategoryTabs() {
         {["All", ...genres].map((genre) => (
           <button
             key={genre}
-            className="genre-pill flex-shrink-0"
+            className="genre-pill shrink-0"
             style={
               genre === "All"
                 ? {
