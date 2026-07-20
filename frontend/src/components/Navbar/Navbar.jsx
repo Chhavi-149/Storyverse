@@ -55,11 +55,11 @@ function Navbar() {
           </Link>
 
           <Link
-            to="/about"
-            className="hover:text-[#D4A43C] transition"
-          >
-            About
-          </Link>
+  to="/about"
+  className="hover:text-[#D4A43C] transition"
+>
+  About
+</Link>
 
         </nav>
 

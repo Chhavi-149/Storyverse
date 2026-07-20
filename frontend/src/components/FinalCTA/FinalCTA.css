@@ -87,3 +87,16 @@
 
     box-shadow:0 10px 25px rgba(212,164,60,.3);
 }
+.cta-button{
+
+text-decoration:none;
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+}

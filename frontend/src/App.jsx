@@ -13,7 +13,7 @@ import StoryPage from "./pages/story/StoryPage";
 import CompetitionsPage from "./pages/Competitions/CompetitionsPage";
 import RankingsPage from "./pages/Rankings/RankingsPage";
 import NotificationsPage from "./pages/Notifications/NotificationsPage";
-
+import AboutPage from "./pages/About/AboutPage";
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
       <Route path="/competitions" element={<CompetitionsPage />}/>
       <Route path="/rankings" element={<RankingsPage />}/>
       <Route path="/notifications" element={<NotificationsPage />}/>
+      <Route path="/about" element={<AboutPage />}/>
       
     </Routes>
   );

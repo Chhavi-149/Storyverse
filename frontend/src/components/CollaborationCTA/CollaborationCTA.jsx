@@ -1,14 +1,18 @@
 import "./CollaborationCTA.css";
 import { PenSquare } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function CollaborationCTA() {
   return (
     <section className="collaboration">
+
       <div className="collaboration-card">
 
         <div className="collaboration-content">
 
-          <p className="tag">COLLABORATE</p>
+          <p className="tag">
+            COLLABORATE
+          </p>
 
           <h2>
             Write Together.
@@ -22,14 +26,21 @@ function CollaborationCTA() {
             writers from across the globe.
           </p>
 
-          <button>
+          <Link
+            to="/explore"
+            className="collaboration-btn"
+          >
+
             <PenSquare size={20} />
+
             Start Collaborating
-          </button>
+
+          </Link>
 
         </div>
 
       </div>
+
     </section>
   );
 }

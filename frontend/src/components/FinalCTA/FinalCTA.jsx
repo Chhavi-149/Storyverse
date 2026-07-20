@@ -1,5 +1,6 @@
 import "./FinalCTA.css";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function FinalCTA() {
   return (
@@ -23,10 +24,14 @@ function FinalCTA() {
           imagination to life.
         </p>
 
-        <button className="cta-button">
+        <Link
+          to="/signup"
+          className="cta-button"
+        >
           Start Your Journey
+
           <ArrowRight size={20} />
-        </button>
+        </Link>
 
       </div>
 
