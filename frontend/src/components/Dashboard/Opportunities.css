@@ -1,0 +1,68 @@
+.opportunities-card {
+  border: 1px solid #2a2724;
+  border-radius: 12px;
+  background: rgba(18, 17, 14, 0.6);
+  padding: 24px;
+}
+
+.opportunities-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #c9a15c;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.opportunities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.opportunity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.opportunity-info h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f5f0e8;
+  margin-bottom: 4px;
+}
+
+.opportunity-info p {
+  font-size: 0.75rem;
+  color: #9a9488;
+}
+
+.opportunity-prize {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #3a352c;
+  background: #1a1815;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #e5b95c;
+  white-space: nowrap;
+}
+
+.opportunities-link {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c9a15c;
+  text-decoration: none;
+  padding-top: 14px;
+  border-top: 1px solid #211e1a;
+}
+
+.opportunities-link:hover {
+  text-decoration: underline;
+}

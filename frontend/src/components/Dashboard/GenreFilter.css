@@ -1,0 +1,42 @@
+.genre-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.genre-pill {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid #2a2724;
+  background: #17140f;
+  color: #c9a97a;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.genre-pill:hover {
+  border-color: #c9a15c;
+  color: #f0d9a8;
+}
+
+.genre-pill.active {
+  background: rgba(201, 161, 92, 0.12);
+  border-color: #c9a15c;
+  color: #e5b95c;
+}
+
+@media (max-width: 576px) {
+  .genre-filter-container {
+    gap: 8px;
+  }
+
+  .genre-pill {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+}

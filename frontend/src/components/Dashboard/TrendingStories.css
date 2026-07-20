@@ -1,0 +1,104 @@
+.trending-container {
+  width: 100%;
+}
+
+.trending-container .section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.trending-container .section-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f5f0e8;
+}
+
+.trending-container .section-heading a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c9a15c;
+  text-decoration: none;
+}
+
+.trending-container .section-heading a:hover {
+  text-decoration: underline;
+}
+
+.trending-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.trending-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid #2a2724;
+  border-radius: 12px;
+  background: rgba(18, 17, 14, 0.6);
+  transition: border-color 0.2s ease;
+}
+
+.trending-card:hover {
+  border-color: rgba(201, 161, 92, 0.4);
+}
+
+.trending-rank {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4a453e;
+  transition: color 0.2s ease;
+}
+
+.trending-card:hover .trending-rank {
+  color: #c9a15c;
+}
+
+.trending-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.trending-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f0e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.trending-card:hover .trending-info h3 {
+  color: #c9a15c;
+}
+
+.trending-author {
+  font-size: 0.75rem;
+  color: #9a9488;
+  margin: 4px 0 12px;
+}
+
+.trending-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.75rem;
+  color: #7a7468;
+}
+
+@media (max-width: 640px) {
+  .trending-grid {
+    grid-template-columns: 1fr;
+  }
+}

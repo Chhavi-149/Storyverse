@@ -1,0 +1,7 @@
+.dashboard-container {
+  width: 100%;
+  max-width: 80rem;      /* 1280px — matches navbar exactly */
+  margin: 0 auto;
+  padding: 0 1.5rem;      /* 24px — matches navbar exactly */
+  box-sizing: border-box;
+}

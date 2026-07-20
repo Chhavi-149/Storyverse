@@ -1,3 +1,5 @@
+import "./ContinueReading.css";
+
 const READING_LIST = [
   { title: "The Cartographer's Daughter", chapter: 23, totalChapters: 34, genre: 'FANTASY', progress: 68, cover: '/assets/covers/cartographer.jpg' },
   { title: 'Frequency Nine', chapter: 14, totalChapters: 41, genre: 'SCI-FI', progress: 35, cover: '/assets/covers/frequency-nine.jpg' },
@@ -6,28 +8,44 @@ const READING_LIST = [
 
 export default function ContinueReading() {
   return (
-    <section>
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="font-serif text-xl font-semibold text-[#f5f0e8]">🕐 Continue Reading</h2>
-        <a href="#" className="text-sm text-[#c9a15c] hover:underline">View all ›</a>
+    <section className="continue-reading-container">
+      <div className="section-heading">
+        <h2><span>🕐</span> Continue Reading</h2>
+        <a href="#">View all ›</a>
       </div>
-      <div className="divide-y divide-[#2a2724] rounded-md border border-[#2a2724] bg-[#0f0e0c]">
+
+      <div className="reading-list-box">
         {READING_LIST.map((book) => (
-          <div key={book.title} className="flex gap-4 p-4">
-            <img src={book.cover} alt={book.title} className="h-16 w-12 rounded object-cover" />
-            <div className="flex-1">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-serif font-semibold text-[#f5f0e8]">{book.title}</h3>
-                  <p className="text-sm text-[#9a9488]">Chapter {book.chapter} of {book.totalChapters}</p>
-                </div>
-                <span className="rounded border border-[#3a352c] px-2 py-0.5 text-xs text-[#c8c3ba]">{book.genre}</span>
-              </div>
-              <div className="mt-3 h-1.5 w-full rounded-full bg-[#2a2724]">
-                <div className="h-1.5 rounded-full bg-[#c9a15c]" style={{ width: `${book.progress}%` }} />
-              </div>
-              <p className="mt-1 text-xs text-[#9a9488]">{book.progress}% complete</p>
+          <div key={book.title} className="reading-row-item">
+
+            <div className="cover-wrapper">
+              <span className="cover-placeholder">📖</span>
+              {book.cover && (
+                <img
+                  src={book.cover}
+                  alt={book.title}
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                />
+              )}
             </div>
+
+            <div className="reading-info-content">
+              <div className="reading-info-header">
+                <div>
+                  <h3>{book.title}</h3>
+                  <p>Chapter {book.chapter} of {book.totalChapters}</p>
+                </div>
+                <span className="genre-badge">{book.genre}</span>
+              </div>
+
+              <div className="progress-container">
+                <div className="progress-track">
+                  <div className="progress-fill" style={{ width: `${book.progress}%` }} />
+                </div>
+                <span className="progress-text">{book.progress}% complete</span>
+              </div>
+            </div>
+
           </div>
         ))}
       </div>

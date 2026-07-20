@@ -1,73 +1,89 @@
-.recommended-section{
-
-max-width:1300px;
-
-margin:70px auto;
-
+.recommended-container {
+  width: 100%;
 }
 
-.recommended-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
-gap:30px;
-
+.section-heading-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f5f0e8;
+  margin-bottom: 16px;
 }
 
-.recommended-card{
-
-background:#17120F;
-
-border:1px solid #2F251C;
-
-border-radius:18px;
-
-overflow:hidden;
-
-text-decoration:none;
-
-transition:.3s;
-
+.recommended-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
-.recommended-card:hover{
-
-transform:translateY(-6px);
-
-border-color:#D4A43C;
-
+.recommended-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #2a2724;
+  border-radius: 12px;
+  background: rgba(18, 17, 14, 0.6);
+  transition: border-color 0.2s ease;
 }
 
-.recommended-card img{
-
-width:100%;
-
-height:260px;
-
-object-fit:cover;
-
+.recommended-card:hover {
+  border-color: rgba(201, 161, 92, 0.4);
 }
 
-.recommended-content{
-
-padding:22px;
-
+.recommended-cover {
+  width: 56px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #1f1d19;
+  border: 1px solid #2a2724;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #7a7468;
 }
 
-.recommended-content h3{
-
-color:white;
-
-margin-bottom:10px;
-
-font-size:22px;
-
+.recommended-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
 }
 
-.recommended-content p{
+.recommended-badge {
+  align-self: flex-start;
+  margin-bottom: 6px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  border: 1px solid #3a352c;
+  background: #1a1815;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #c8c3ba;
+}
 
-color:#B7A99A;
+.recommended-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f5f0e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.recommended-info p {
+  font-size: 0.75rem;
+  color: #9a9488;
+}
+
+@media (max-width: 640px) {
+  .recommended-grid {
+    grid-template-columns: 1fr;
+  }
 }

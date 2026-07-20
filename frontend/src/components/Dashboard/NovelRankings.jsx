@@ -1,3 +1,5 @@
+import "./NovelRankings.css";
+
 const RANKINGS = [
   { rank: 1, title: "The Cartographer's Daughter", author: 'Miriam Osei', views: '142k' },
   { rank: 2, title: 'Salt & Starlight', author: 'Callum Vance', views: '99k' },
@@ -7,22 +9,23 @@ const RANKINGS = [
 
 export default function NovelRankings() {
   return (
-    <section className="rounded-lg border border-[#2a2724] bg-[#0f0e0c] p-6">
-      <div className="mb-4 flex items-center justify-between">
-        <p className="text-xs font-semibold tracking-wider text-[#c9a15c]">📈 NOVEL RANKINGS</p>
-        <a href="#" className="text-xs text-[#c9a15c] hover:underline">All rankings</a>
+    <section className="novel-rankings-card">
+      <div className="novel-rankings-heading">
+        <p><span>📈</span> NOVEL RANKINGS</p>
+        <a href="#">All rankings</a>
       </div>
-      <div className="space-y-3">
-        {RANKINGS.map((r) => (
-          <div key={r.rank} className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="font-serif text-lg font-bold text-[#c9a15c]">{r.rank}</span>
-              <div>
-                <h4 className="font-serif text-sm font-semibold text-[#f5f0e8]">{r.title}</h4>
-                <p className="text-xs text-[#9a9488]">{r.author}</p>
-              </div>
+
+      <div className="novel-rankings-list">
+        {RANKINGS.map((novel) => (
+          <div key={novel.rank} className="novel-rank-row">
+            <span className="novel-rank-number">{novel.rank}</span>
+
+            <div className="novel-rank-info">
+              <h4>{novel.title}</h4>
+              <p>{novel.author}</p>
             </div>
-            <span className="text-xs text-[#9a9488]">👁 {r.views}</span>
+
+            <span className="novel-rank-views">👁 {novel.views}</span>
           </div>
         ))}
       </div>

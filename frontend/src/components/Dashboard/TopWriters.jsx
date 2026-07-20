@@ -1,89 +1,35 @@
-import { Link } from "react-router-dom";
-import "./Dashboard.css";
+import "./TopWriters.css";
 
-function TopWriters() {
+const TOP_WRITERS = [
+  { rank: 1, name: 'Miriam Osei', followers: '48.2k' },
+  { rank: 2, name: 'Callum Vance', followers: '31.4k' },
+  { rank: 3, name: 'Reza Tahir', followers: '24.6k' },
+];
 
-  const writers = [
-
-    {
-      id: 1,
-      name: "Sophia Carter",
-      followers: "42.8K",
-      image:
-        "https://i.pravatar.cc/150?img=32",
-    },
-
-    {
-      id: 2,
-      name: "Daniel Grey",
-      followers: "39.1K",
-      image:
-        "https://i.pravatar.cc/150?img=15",
-    },
-
-    {
-      id: 3,
-      name: "Emily Woods",
-      followers: "31.5K",
-      image:
-        "https://i.pravatar.cc/150?img=48",
-    },
-
-  ];
-
+export default function TopWriters() {
   return (
+    <section className="top-writers-card">
+      <div className="top-writers-heading">
+        <p>TOP WRITERS</p>
+        <a href="#">See all</a>
+      </div>
 
-    <div className="sidebar-card">
+      <div className="top-writers-list">
+        {TOP_WRITERS.map((writer) => (
+          <div key={writer.rank} className="top-writer-row">
+            <span className="writer-rank">{writer.rank}</span>
 
-      <p className="sidebar-tag">
+            <div className="writer-avatar">{writer.name.charAt(0)}</div>
 
-        TOP WRITERS
+            <div className="writer-info">
+              <h4>{writer.name}</h4>
+              <p>{writer.followers} followers</p>
+            </div>
 
-      </p>
-
-      {writers.map((writer, index) => (
-
-        <Link
-          key={writer.id}
-          to="/profile"
-          className="writer-card"
-        >
-
-          <span className="writer-rank">
-
-            #{index + 1}
-
-          </span>
-
-          <img
-            src={writer.image}
-            alt={writer.name}
-          />
-
-          <div className="writer-info">
-
-            <h4>
-
-              {writer.name}
-
-            </h4>
-
-            <small>
-
-              {writer.followers} Followers
-
-            </small>
-
+            <span className="writer-trophy">🏆</span>
           </div>
-
-        </Link>
-
-      ))}
-
-    </div>
-
+        ))}
+      </div>
+    </section>
   );
-
 }
-
-export default TopWriters;

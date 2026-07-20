@@ -1,0 +1,88 @@
+.top-writers-card {
+  border: 1px solid #2a2724;
+  border-radius: 12px;
+  background: rgba(18, 17, 14, 0.6);
+  padding: 24px;
+}
+
+.top-writers-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.top-writers-heading p {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #c9a15c;
+  text-transform: uppercase;
+}
+
+.top-writers-heading a {
+  font-size: 0.75rem;
+  color: #9a9488;
+  text-decoration: none;
+}
+
+.top-writers-heading a:hover {
+  color: #c9a15c;
+}
+
+.top-writers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.top-writer-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.writer-rank {
+  width: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #7a7468;
+}
+
+.writer-avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #2a2724;
+  border: 1px solid #3a352c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #c9a15c;
+}
+
+.writer-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.writer-info h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f5f0e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.writer-info p {
+  font-size: 0.75rem;
+  color: #9a9488;
+}
+
+.writer-trophy {
+  font-size: 0.85rem;
+}

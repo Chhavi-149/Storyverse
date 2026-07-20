@@ -1,83 +1,84 @@
-.quick-actions{
-
-max-width:1300px;
-
-margin:60px auto;
-
+/* Outer Container */
+.quick-actions {
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
-.quick-actions h2{
-
-color:white;
-
-font-size:2rem;
-
-margin-bottom:30px;
-
+/* Header */
+.quick-actions h2 {
+  color: #f5f0e8;
+  font-family: serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
 
-.actions-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-
-gap:25px;
-
+/* Grid Layout - Responsive 2-column or full width */
+.actions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
 }
 
-.action-card{
-
-background:#17120F;
-
-border:1px solid #2F251C;
-
-border-radius:18px;
-
-padding:30px;
-
-text-decoration:none;
-
-transition:.3s;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:flex-start;
-
+@media (min-width: 640px) {
+  .actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.action-card svg{
-
-color:#D4A43C;
-
-margin-bottom:18px;
-
+/* Individual Action Card */
+.action-card {
+  background: #12110e;
+  border: 1px solid #2a2724;
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.action-card h3{
-
-color:white;
-
-margin-bottom:10px;
-
+.action-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212, 164, 60, 0.5);
+  background: #181613;
 }
 
-.action-card p{
-
-color:#B7A99A;
-
-line-height:1.6;
-
+/* Icon Styling & Hover Effect */
+.action-card svg {
+  color: #d4a43c;
+  margin-bottom: 0.875rem;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.action-card:hover{
+.action-card:hover svg {
+  transform: scale(1.05);
+  color: #e5b850;
+}
 
-transform:translateY(-5px);
+/* Card Typography */
+.action-card h3 {
+  color: #f5f0e8;
+  font-family: serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  transition: color 0.2s ease;
+}
 
-border-color:#D4A43C;
+.action-card:hover h3 {
+  color: #d4a43c;
+}
 
-background:#1D1713;
-
+.action-card p {
+  color: #8e877d;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

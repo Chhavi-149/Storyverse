@@ -1,42 +1,37 @@
 import { Search } from "lucide-react";
+import "./DashboardLayout.css";
+import "./DashboardHero.css";
 
-export default function DashboardHero() {
+export default function DashboardHero({ user: propUser }) {
   const hour = new Date().getHours();
 
   const greeting =
-    hour < 12
-      ? "Good morning"
-      : hour < 18
-      ? "Good afternoon"
-      : "Good evening";
+    hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
 
-  // Temporary user until Firebase Auth is added
-  const user = {
-    name: "Chhavi",
-  };
+  const storedUser = JSON.parse(
+    localStorage.getItem("inkwell_current_user") || "{}"
+  );
+  const userName = propUser?.username || storedUser?.username || "Miriam";
 
   return (
-    <div className="flex flex-col gap-6 py-8 md:flex-row md:items-end md:justify-between">
-      <div>
-        <p className="text-sm text-[#9a9488]">{greeting},</p>
+    <section className="hero-section">
+      <div className="dashboard-container hero-container">
 
-        <h1 className="font-serif text-4xl font-bold text-[#f5f0e8]">
-          Welcome back, {user.name}.
-        </h1>
+        <div className="hero-greeting">
+          <p className="greeting-subtext">{greeting},</p>
+          <h1 className="greeting-title">Welcome back, {userName}.</h1>
+        </div>
+
+        <div className="hero-search-wrapper">
+          <Search size={16} className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search stories, writers, genres..."
+            className="search-input"
+          />
+        </div>
+
       </div>
-
-      <div className="relative w-full max-w-md">
-        <Search
-          size={18}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8e877d]"
-        />
-
-        <input
-          type="text"
-          placeholder="Search stories, writers, genres..."
-          className="w-full rounded-lg border border-[#2a2724] bg-[#161513] py-3 pl-11 pr-4 text-[#f5f0e8] placeholder:text-[#8e877d] focus:border-[#D4A43C] focus:outline-none"
-        />
-      </div>
-    </div>
+    </section>
   );
 }
