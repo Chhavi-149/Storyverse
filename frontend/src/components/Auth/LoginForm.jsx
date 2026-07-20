@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
+import { useAuth } from "../../context/AuthContext";
 
 function LoginForm() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -19,16 +21,8 @@ function LoginForm() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-
-    setErrors({
-      ...errors,
-      [name]: "",
-    });
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+    setErrors({ ...errors, [name]: "" });
   };
 
   const validateForm = () => {
@@ -36,9 +30,7 @@ function LoginForm() {
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
-    } else if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
-    ) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address.";
     }
 
@@ -47,33 +39,29 @@ function LoginForm() {
     }
 
     setErrors(newErrors);
-
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      console.log(formData);
+    if (!validateForm()) return;
 
-      // Firebase Login Code goes here later
-
-      navigate("/profile");
+    try {
+      login(formData.email, formData.password);
+      navigate("/dashboard");
+    } catch (err) {
+      setErrors({ general: err.message });
     }
   };
 
   return (
     <form className="auth-form" onSubmit={handleSubmit} noValidate>
-
-      {/* Email */}
+      {errors.general && <p className="form-error-banner">{errors.general}</p>}
 
       <div>
-
         <div className="input-group">
-
           <Mail className="input-icon" size={20} />
-
           <input
             type="email"
             name="email"
@@ -81,23 +69,13 @@ function LoginForm() {
             value={formData.email}
             onChange={handleChange}
           />
-
         </div>
-
-        {errors.email && (
-          <p className="error-text">{errors.email}</p>
-        )}
-
+        {errors.email && <p className="error-text">{errors.email}</p>}
       </div>
 
-      {/* Password */}
-
       <div>
-
         <div className="input-group">
-
           <Lock className="input-icon" size={20} />
-
           <input
             type={showPassword ? "text" : "password"}
             name="password"
@@ -105,52 +83,31 @@ function LoginForm() {
             value={formData.password}
             onChange={handleChange}
           />
-
           <button
             type="button"
             className="eye-btn"
             onClick={() => setShowPassword(!showPassword)}
           >
-            {showPassword ? (
-              <EyeOff size={20} />
-            ) : (
-              <Eye size={20} />
-            )}
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
-
         </div>
-
-        {errors.password && (
-          <p className="error-text">{errors.password}</p>
-        )}
-
+        {errors.password && <p className="error-text">{errors.password}</p>}
       </div>
 
-      {/* Remember Me */}
-
       <div className="remember-row">
-
         <label className="remember">
-
           <input
             type="checkbox"
             name="rememberMe"
             checked={formData.rememberMe}
             onChange={handleChange}
           />
-
           Remember Me
-
         </label>
-
         <a href="#">Forgot Password?</a>
-
       </div>
 
-      <button
-        type="submit"
-        className="primary-auth-btn"
-      >
+      <button type="submit" className="primary-auth-btn">
         Log In
       </button>
 
@@ -158,19 +115,14 @@ function LoginForm() {
         <span>OR</span>
       </div>
 
-      <button
-        type="button"
-        className="google-btn"
-      >
+      <button type="button" className="google-btn">
         <FcGoogle size={22} />
         Continue with Google
       </button>
 
       <p className="bottom-text">
-        Don't have an account?{" "}
-        <Link to="/signup">Sign Up</Link>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
       </p>
-
     </form>
   );
 }

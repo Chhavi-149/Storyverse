@@ -1,50 +1,58 @@
 import "./Auth.css";
+import { BookOpen } from "lucide-react";
 
-function AuthLayout({ children, title, subtitle }) {
+function AuthLayout({ children, title, subtitle, currentStep, totalSteps }) {
   return (
     <div className="auth-page">
-
-      {/* Left Side */}
-      <div className="auth-left">
-
-        <div className="overlay"></div>
-
-        <div className="left-content">
-
-          <h1>Inkwell</h1>
-
-          <h2>
-            Where Stories
-            <br />
-            Come Alive.
-          </h2>
-
-          <p>
-            Join thousands of writers and readers.
-            Write your imagination.
-            Read unforgettable stories.
-          </p>
-
-        </div>
-
-      </div>
-
-      {/* Right Side */}
+      <div className="auth-left"></div>
 
       <div className="auth-right">
-
         <div className="auth-box">
 
-          <h2>{title}</h2>
+          <div className="auth-logo">
+            <span className="logo-icon">
+              <BookOpen size={20} />
+            </span>
+            <span className="logo-text">Inkwell</span>
+          </div>
 
+          {totalSteps && (
+            <div className="step-indicator">
+              {Array.from({ length: totalSteps }, (_, i) => i + 1).map(
+                (step, index) => (
+                  <div className="step-item" key={step}>
+                    <div
+                      className={
+                        "step-circle " +
+                        (step < currentStep
+                          ? "completed"
+                          : step === currentStep
+                          ? "active"
+                          : "")
+                      }
+                    >
+                      {step < currentStep ? "✓" : step}
+                    </div>
+                    {index < totalSteps - 1 && (
+                      <div
+                        className={
+                          "step-line " + (step < currentStep ? "completed" : "")
+                        }
+                      ></div>
+                    )}
+                  </div>
+                )
+              )}
+            </div>
+          )}
+
+          <h2>{title}</h2>
           <p>{subtitle}</p>
 
           {children}
 
         </div>
-
       </div>
-
     </div>
   );
 }

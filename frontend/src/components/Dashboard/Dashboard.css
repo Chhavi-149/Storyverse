@@ -1,14 +1,2 @@
-.dashboard-page{
-    min-height:100vh;
-    background:#0B0907;
-    padding:40px 0 80px;
-}
-.page-top{
-
-max-width:1300px;
-
-margin:0 auto;
-
-padding:30px 30px 0;
-
-}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

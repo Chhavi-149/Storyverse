@@ -1,80 +1,25 @@
-import { Link } from "react-router-dom";
-import "./DraftStories.css";
+const DRAFTS = [
+  { title: 'Untitled Draft', lastEdited: '2 days ago', words: 4210 },
+];
 
-function DraftStories() {
-  const drafts = [
-    {
-      id: 1,
-      title: "The Crimson Crown",
-      updated: "Updated 2 hours ago",
-      words: "3,245 words",
-    },
-    {
-      id: 2,
-      title: "Echoes of Eternity",
-      updated: "Updated Yesterday",
-      words: "8,120 words",
-    },
-    {
-      id: 3,
-      title: "The Last Ember",
-      updated: "Updated 3 days ago",
-      words: "1,980 words",
-    },
-  ];
-
+export default function DraftStories() {
   return (
-    <section id="drafts" className="draft-stories">
-
-      <div className="section-heading">
-
-        <h2>Your Drafts</h2>
-
-        <Link to="/editor">
-          New Story
-        </Link>
-
+    <section>
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="font-serif text-xl font-semibold text-[#f5f0e8]">Your Draft Stories</h2>
+        <a href="/write" className="text-sm text-[#c9a15c] hover:underline">New draft +</a>
       </div>
-
-      <div className="draft-list">
-
-        {drafts.map((draft) => (
-
-          <div className="draft-card" key={draft.id}>
-
+      <div className="divide-y divide-[#2a2724] rounded-md border border-[#2a2724] bg-[#0f0e0c]">
+        {DRAFTS.map((d) => (
+          <div key={d.title} className="flex items-center justify-between p-4">
             <div>
-
-              <h3>{draft.title}</h3>
-
-              <p>{draft.updated}</p>
-
-              <span>{draft.words}</span>
-
+              <h3 className="font-serif font-semibold text-[#f5f0e8]">{d.title}</h3>
+              <p className="text-xs text-[#9a9488]">Last edited {d.lastEdited} · {d.words} words</p>
             </div>
-
-            <div className="draft-buttons">
-
-              <Link
-                to="/editor"
-                className="continue-btn"
-              >
-                Continue
-              </Link>
-
-              <button className="delete-btn">
-                Delete
-              </button>
-
-            </div>
-
+            <button className="text-sm text-[#c9a15c] hover:underline">Continue writing</button>
           </div>
-
         ))}
-
       </div>
-
     </section>
   );
 }
-
-export default DraftStories;

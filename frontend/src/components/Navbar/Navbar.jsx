@@ -54,12 +54,7 @@ function Navbar() {
             Competitions
           </Link>
 
-          <Link
-  to="/about"
-  className="hover:text-[#D4A43C] transition"
->
-  About
-</Link>
+    
 
         </nav>
 

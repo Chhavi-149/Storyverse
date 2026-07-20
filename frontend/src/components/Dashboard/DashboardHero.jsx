@@ -1,64 +1,42 @@
-import { Link } from "react-router-dom";
-import "./DashboardHero.css";
+import { Search } from "lucide-react";
 
-function DashboardHero() {
+export default function DashboardHero() {
+  const hour = new Date().getHours();
+
+  const greeting =
+    hour < 12
+      ? "Good morning"
+      : hour < 18
+      ? "Good afternoon"
+      : "Good evening";
+
+  // Temporary user until Firebase Auth is added
+  const user = {
+    name: "Chhavi",
+  };
+
   return (
-    <section className="dashboard-hero">
+    <div className="flex flex-col gap-6 py-8 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p className="text-sm text-[#9a9488]">{greeting},</p>
 
-      <div className="hero-left">
-
-        <p className="hero-tag">
-          Welcome Back 👋
-        </p>
-
-        <h1>
-          Ready to continue your
-          <span> writing journey?</span>
+        <h1 className="font-serif text-4xl font-bold text-[#f5f0e8]">
+          Welcome back, {user.name}.
         </h1>
-
-        <p className="hero-text">
-          You have 3 drafts waiting and readers are
-          eager for your next chapter.
-        </p>
-
-        <div className="hero-buttons">
-
-          <Link
-            to="/editor"
-            className="hero-primary-btn"
-          >
-            Continue Writing
-          </Link>
-
-          <Link
-            to="/explore"
-            className="hero-secondary-btn"
-          >
-            Explore Stories
-          </Link>
-
-        </div>
-
       </div>
 
-      <div className="hero-right">
+      <div className="relative w-full max-w-md">
+        <Search
+          size={18}
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8e877d]"
+        />
 
-        <div className="streak-card">
-
-          <h3>🔥 Writing Streak</h3>
-
-          <h2>5 Days</h2>
-
-          <p>
-            Keep writing today to continue your streak.
-          </p>
-
-        </div>
-
+        <input
+          type="text"
+          placeholder="Search stories, writers, genres..."
+          className="w-full rounded-lg border border-[#2a2724] bg-[#161513] py-3 pl-11 pr-4 text-[#f5f0e8] placeholder:text-[#8e877d] focus:border-[#D4A43C] focus:outline-none"
+        />
       </div>
-
-    </section>
+    </div>
   );
 }
-
-export default DashboardHero;
