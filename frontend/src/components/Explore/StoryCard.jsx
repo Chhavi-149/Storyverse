@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { Eye, Heart, BookOpen, Star } from "lucide-react";
 
 function StoryCard({ story }) {
@@ -19,7 +20,7 @@ function StoryCard({ story }) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-transparent" />
 
           <span className="absolute top-4 left-4 bg-amber-500 text-black text-xs font-semibold px-3 py-1 rounded-full">
             {story.genre}
@@ -70,8 +71,7 @@ function StoryCard({ story }) {
         </div>
 
       </div>
-    </Link>
+       </Link>
   );
 }
-
 export default StoryCard;

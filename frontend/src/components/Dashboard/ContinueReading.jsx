@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { Clock, ChevronRight } from "lucide-react";
 
 import { stories } from "../../data/mock";
@@ -44,7 +45,7 @@ function ContinueReading() {
               <img
                 src={story.cover}
                 alt={story.title}
-                className="w-14 h-20 object-cover rounded-md flex-shrink-0"
+                className="w-14 h-20 object-cover rounded-md shrink-0"
                 style={{ background: "#1e1a15" }}
               />
 
@@ -83,8 +84,9 @@ function ContinueReading() {
           </Link>
         ))}
       </div>
-    </section>
+       </section>
   );
 }
-
 export default ContinueReading;
+
+

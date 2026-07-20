@@ -1,27 +1,39 @@
-// function App() {
-//   return (
-//     <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-//       <h1 className="text-5xl font-bold text-pink-500">
-//         Storyverse 🚀
-//       </h1>
-//     </div>
-//   );
-// }
+import { Routes, Route } from "react-router-dom";
 
-// export default App;
-
-// import ExplorePage from "./pages/Explore/ExplorePage";
-
-// function App() {
-//   return <ExplorePage />;
-// }
-
-// export default App;
-
+import LandingPage from "./pages/landing/LandingPage";
+import LoginPage from "./pages/login/LoginPage";
+import SignUpPage from "./pages/signup/SignUpPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
+import ExplorePage from "./pages/Explore/ExplorePage";
+import EditorPage from "./pages/editor/EditorPage";
+import ReaderPage from "./pages/reader/ReaderPage";
+import ProfilePage from "./pages/profile/ProfilePage";
+import EditProfilePage from "./pages/editProfile/EditProfilePage";
+import StoryPage from "./pages/story/StoryPage";
+import CompetitionsPage from "./pages/Competitions/CompetitionsPage";
+import RankingsPage from "./pages/Rankings/RankingsPage";
+import NotificationsPage from "./pages/Notifications/NotificationsPage";
+import AboutPage from "./pages/About/AboutPage";
 
 function App() {
-  return <DashboardPage />;
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/explore" element={<ExplorePage />} />
+      <Route path="/editor" element={<EditorPage />} />
+      <Route path="/reader" element={<ReaderPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/edit-profile" element={<EditProfilePage />} />
+      <Route path="/story" element={<StoryPage />} />
+      <Route path="/competitions" element={<CompetitionsPage />} />
+      <Route path="/rankings" element={<RankingsPage />} />
+      <Route path="/notifications" element={<NotificationsPage />} />
+      <Route path="/about" element={<AboutPage />} />
+    </Routes>
+  );
 }
 
 export default App;
