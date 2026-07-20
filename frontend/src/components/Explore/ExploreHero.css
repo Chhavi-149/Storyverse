@@ -1,0 +1,95 @@
+.explore-hero-section {
+  width: 100%;
+  padding: 48px 0 32px;
+}
+
+.explore-hero-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.explore-hero-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #c9a15c;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.explore-hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #f5f0e8;
+  margin-bottom: 32px;
+}
+
+.explore-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 840px;
+}
+
+.explore-search-icon {
+  position: absolute;
+  left: 18px;
+  color: #7f776d;
+  pointer-events: none;
+}
+
+.explore-search-input {
+  width: 100%;
+  height: 56px;
+  padding: 0 56px 0 52px;
+  border-radius: 14px;
+  border: 1px solid #2b2722;
+  background: #151412;
+  color: #f5f0e8;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.explore-search-input::placeholder {
+  color: #7f776d;
+}
+
+.explore-search-input:hover {
+  border-color: #3b352f;
+}
+
+.explore-search-input:focus {
+  outline: none;
+  border-color: #c9a15c;
+  box-shadow: 0 0 0 3px rgba(201, 161, 92, 0.15);
+}
+
+.explore-filter-btn {
+  position: absolute;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #9a9488;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.explore-filter-btn:hover {
+  color: #c9a15c;
+  background: rgba(201, 161, 92, 0.1);
+}
+
+@media (max-width: 640px) {
+  .explore-hero-title {
+    font-size: 2rem;
+  }
+}

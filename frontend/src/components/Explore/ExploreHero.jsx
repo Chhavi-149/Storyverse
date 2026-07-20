@@ -1,26 +1,33 @@
-import "./Explore.css";
-import { Search } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
+import "./ExploreHero.css";
 
-function ExploreHero() {
+export default function ExploreHero({ searchValue, onSearchChange, onFilterClick }) {
   return (
-    <section className="explore-hero">
-      <h1>Discover Amazing Stories</h1>
+    <section className="explore-hero-section">
+      <div className="explore-hero-container">
 
-      <p>
-        Explore thousands of stories written by talented writers from around the
-        world.
-      </p>
+        <p className="explore-hero-tag">DISCOVER</p>
+        <h1 className="explore-hero-title">Explore Stories</h1>
 
-      <div className="search-box">
-        <Search size={20} />
+        <div className="explore-search-wrapper">
+          <Search size={18} className="explore-search-icon" />
+          <input
+            type="text"
+            placeholder="Search by title, author, or genre..."
+            className="explore-search-input"
+            value={searchValue}
+            onChange={(e) => onSearchChange?.(e.target.value)}
+          />
+          <button
+            className="explore-filter-btn"
+            onClick={onFilterClick}
+            aria-label="Filters"
+          >
+            <SlidersHorizontal size={18} />
+          </button>
+        </div>
 
-        <input
-          type="text"
-          placeholder="Search by title, author or genre..."
-        />
       </div>
     </section>
   );
 }
-
-export default ExploreHero;

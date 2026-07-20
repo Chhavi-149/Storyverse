@@ -1,0 +1,119 @@
+.explore-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.explore-sidebar-card {
+  border: 1px solid #2a2724;
+  border-radius: 14px;
+  background: rgba(18, 17, 14, 0.6);
+  padding: 20px;
+}
+
+.explore-sidebar-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #c9a15c;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* SORT BY */
+.sort-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sort-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #9a9488;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sort-option-btn:hover {
+  color: #f5f0e8;
+}
+
+.sort-option-btn.active {
+  background: #c9a15c;
+  color: #17120f;
+  font-weight: 700;
+}
+
+.sort-arrow {
+  font-size: 0.85rem;
+}
+
+/* GENRE */
+.genre-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.genre-chip-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #2a2724;
+  background: #17140f;
+  color: #b8b2a6;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.genre-chip-btn:hover {
+  border-color: #c9a15c;
+  color: #f0d9a8;
+}
+
+.genre-chip-btn.active {
+  background: rgba(201, 161, 92, 0.12);
+  border-color: #c9a15c;
+  color: #e5b95c;
+}
+
+/* LANGUAGE */
+.language-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.language-option-btn {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #9a9488;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.language-option-btn:hover {
+  color: #f5f0e8;
+}
+
+.language-option-btn.active {
+  background: #c9a15c;
+  color: #17120f;
+  font-weight: 700;
+}
