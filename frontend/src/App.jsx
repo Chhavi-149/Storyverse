@@ -11,6 +11,8 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import EditProfilePage from "./pages/editProfile/EditProfilePage";
 import StoryPage from "./pages/story/StoryPage";
 import CompetitionsPage from "./pages/Competitions/CompetitionsPage";
+import RankingsPage from "./pages/Rankings/RankingsPage";
+import NotificationsPage from "./pages/Notifications/NotificationsPage";
 
 
 function App() {
@@ -27,6 +29,9 @@ function App() {
       <Route path="/edit-profile" element={<EditProfilePage />} />
       <Route path="/story" element={<StoryPage />} />
       <Route path="/competitions" element={<CompetitionsPage />}/>
+      <Route path="/rankings" element={<RankingsPage />}/>
+      <Route path="/notifications" element={<NotificationsPage />}/>
+      
     </Routes>
   );
 }
