@@ -1,64 +1,36 @@
+import { Trophy } from "lucide-react";
+import pastWinners from "../../data/pastWinners";
 import "./Competitions.css";
 
-function PastWinners(){
+export default function PastWinners() {
+  return (
+    <section className="past-winners-section">
+      <div className="past-winners-container">
 
-const winners=[
+        <p className="past-winners-tag">HALL OF FAME</p>
+        <h2 className="past-winners-title">Past Winners</h2>
 
-{
-name:"Sophia Carter",
-story:"Whispers of the Night",
-medal:"🥇"
-},
+        <div className="past-winners-list">
+          {pastWinners.map((winner) => (
+            <div key={winner.id} className="past-winner-row">
+              <span className="past-winner-trophy">
+                <Trophy size={20} />
+              </span>
 
-{
-name:"Emma Watson",
-story:"Echoes of Tomorrow",
-medal:"🥈"
-},
+              <div className="past-winner-info">
+                <h4>{winner.story}</h4>
+                <p>by {winner.author} · {winner.competition}</p>
+              </div>
 
-{
-name:"Daniel Grey",
-story:"Kingdom of Ash",
-medal:"🥉"
-},
+              <div className="past-winner-result">
+                <span className="past-winner-placement">{winner.placement}</span>
+                <span className="past-winner-prize">{winner.prize}</span>
+              </div>
+            </div>
+          ))}
+        </div>
 
-];
-
-return(
-
-<section className="competition-section">
-
-<h2>🏆 Past Winners</h2>
-
-<div className="winner-grid">
-
-{winners.map((winner,index)=>(
-
-<div
-className="winner-card"
-key={index}
->
-
-<div className="winner-medal">
-
-{winner.medal}
-
-</div>
-
-<h3>{winner.name}</h3>
-
-<p>{winner.story}</p>
-
-</div>
-
-))}
-
-</div>
-
-</section>
-
-);
-
+      </div>
+    </section>
+  );
 }
-
-export default PastWinners;

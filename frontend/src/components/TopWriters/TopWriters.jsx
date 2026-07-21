@@ -1,56 +1,38 @@
+import { Link } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
+import topWriters from "../../data/topWriters";
 import "./TopWriters.css";
 
-const writers = [
-  {
-    name: "Emily Carter",
-    genre: "Fantasy",
-    followers: "124K",
-    image: "https://i.pravatar.cc/150?img=32",
-  },
-  {
-    name: "James Wilson",
-    genre: "Sci-Fi",
-    followers: "97K",
-    image: "https://i.pravatar.cc/150?img=12",
-  },
-  {
-    name: "Sophia Brown",
-    genre: "Romance",
-    followers: "142K",
-    image: "https://i.pravatar.cc/150?img=45",
-  },
-  {
-    name: "Daniel Lee",
-    genre: "Mystery",
-    followers: "89K",
-    image: "https://i.pravatar.cc/150?img=15",
-  },
-];
-
-function TopWriters() {
+export default function TopWriters() {
   return (
-    <section className="writers">
-      <div className="writers-container">
+    <section className="top-writers-landing-section">
+      <div className="top-writers-landing-container">
 
-        <div className="writers-heading">
-          <p>COMMUNITY</p>
-          <h2>Meet Top Writers</h2>
+        <div className="top-writers-landing-heading">
+          <div>
+            <p className="top-writers-landing-tag">COMMUNITY</p>
+            <h2>The Voices Behind the Words</h2>
+          </div>
+          <Link to="/rankings" className="top-writers-landing-link">
+            Full rankings <ChevronRight size={16} />
+          </Link>
         </div>
 
-        <div className="writers-grid">
-          {writers.map((writer) => (
-            <div className="writer-card" key={writer.name}>
-
-              <img src={writer.image} alt={writer.name} />
+        <div className="top-writers-landing-grid">
+          {topWriters.map((writer) => (
+            <div key={writer.rank} className="top-writer-landing-card">
+              <div className="top-writer-landing-avatar-wrap">
+                <img src={writer.avatar} alt={writer.name} />
+                <span className="top-writer-landing-rank">{writer.rank}</span>
+              </div>
 
               <h3>{writer.name}</h3>
+              <span className="top-writer-landing-genre">{writer.genre}</span>
 
-              <span>{writer.genre}</span>
-
-              <p>{writer.followers} Followers</p>
-
-              <button>Follow</button>
-
+              <p className="top-writer-landing-stats">
+                {writer.stories} stories<br />
+                {writer.followers} followers
+              </p>
             </div>
           ))}
         </div>
@@ -59,5 +41,3 @@ function TopWriters() {
     </section>
   );
 }
-
-export default TopWriters;

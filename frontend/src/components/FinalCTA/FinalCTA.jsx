@@ -1,42 +1,35 @@
-import "./FinalCTA.css";
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import "./FinalCTA.css";
 
-function FinalCTA() {
+export default function FinalCTA() {
   return (
-    <section className="final-cta">
+    <section className="final-cta-section">
+      <div className="final-cta-container">
 
-      <div className="cta-container">
+        <p className="final-cta-tag">GET STARTED</p>
 
-        <p className="cta-tag">
-          JOIN THOUSANDS OF STORYTELLERS
-        </p>
-
-        <h2>
-          Your Next
-          <span> Bestseller </span>
-          Starts Here.
+        <h2 className="final-cta-title">
+          Your Story Is
+          <br />
+          <span className="final-cta-title-italic">Waiting to Be Told.</span>
         </h2>
 
-        <p className="cta-description">
-          Whether you're writing your very first chapter or publishing your
-          tenth novel, Inkwell gives you the tools and community to bring your
-          imagination to life.
+        <p className="final-cta-subtext">
+          Free to read. Free to write. Free to become the author you were meant to be.
         </p>
 
-        <Link
-          to="/signup"
-          className="cta-button"
-        >
-          Start Your Journey
-
-          <ArrowRight size={20} />
-        </Link>
+        <div className="final-cta-actions">
+          <Link to="/signup" className="final-cta-btn-primary">
+            Create Your Account
+            <ArrowRight size={18} />
+          </Link>
+          <Link to="/explore" className="final-cta-btn-outline">
+            Browse Stories
+          </Link>
+        </div>
 
       </div>
-
     </section>
   );
 }
-
-export default FinalCTA;

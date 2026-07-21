@@ -97,3 +97,27 @@
   color: #e5b95c;
   font-weight: 600;
 }
+.story-card-status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.story-card-status-badge.status-ongoing {
+  color: #e5b95c;
+  border-color: rgba(201, 161, 92, 0.4);
+}
+
+.story-card-status-badge.status-completed {
+  color: #7ecb9a;
+  border-color: rgba(126, 203, 154, 0.4);
+}

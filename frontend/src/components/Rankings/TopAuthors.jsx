@@ -1,72 +1,32 @@
+import { Users, Crown } from "lucide-react";
+import topWriters from "../../data/topWriters";
 import "./Rankings.css";
 
-function TopAuthors() {
-
-  const authors = [
-
-    {
-      name: "Sophia Carter",
-      stories: 32,
-      followers: "8.4K",
-    },
-
-    {
-      name: "Emma Watson",
-      stories: 26,
-      followers: "7.8K",
-    },
-
-    {
-      name: "Daniel Grey",
-      stories: 21,
-      followers: "6.9K",
-    },
-
-  ];
+export default function TopAuthors() {
+  const sorted = [...topWriters].sort((a, b) => a.rank - b.rank);
 
   return (
+    <div className="top-authors-list">
+      {sorted.map((writer) => (
+        <div key={writer.rank} className="top-author-row">
+          <span className="top-author-rank">
+            {writer.rank <= 3 ? <Crown size={16} /> : writer.rank}
+          </span>
 
-    <section className="authors-section">
+          <img src={writer.avatar} alt={writer.name} className="top-author-avatar" />
 
-      <h2>✨ Featured Authors</h2>
-
-      <div className="authors-grid">
-
-        {authors.map((author, index) => (
-
-          <div
-            className="author-card"
-            key={index}
-          >
-
-            <div className="author-avatar">
-
-              {author.name.charAt(0)}
-
-            </div>
-
-            <h3>{author.name}</h3>
-
-            <p>{author.stories} Stories</p>
-
-            <span>{author.followers} Followers</span>
-
-            <button>
-
-              View Profile
-
-            </button>
-
+          <div className="top-author-info">
+            <h4>{writer.name}</h4>
+            <p>
+              <span className="leaderboard-genre-tag">{writer.genre}</span> · {writer.stories} stories
+            </p>
           </div>
 
-        ))}
-
-      </div>
-
-    </section>
-
+          <span className="top-author-followers">
+            <Users size={13} /> {writer.followers}
+          </span>
+        </div>
+      ))}
+    </div>
   );
-
 }
-
-export default TopAuthors;

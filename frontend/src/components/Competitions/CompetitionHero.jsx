@@ -1,55 +1,34 @@
+import competitionStats from "../../data/competitionStats";
 import "./Competitions.css";
-import { Trophy, Users, Medal } from "lucide-react";
 
-function CompetitionHero() {
+export default function CompetitionHero() {
   return (
-    <section className="competition-hero">
+    <section className="competitions-hero">
+      <div className="competitions-hero-container">
 
-      <div className="competition-overlay"></div>
+        <p className="competitions-hero-tag">INKWELL COMPETITIONS</p>
 
-      <div className="competition-content">
-
-        <span className="competition-badge">
-          🏆 Weekly & Monthly Challenges
-        </span>
-
-        <h1>
-          Compete.
+        <h1 className="competitions-hero-title">
+          Write for
           <br />
-          <span>Write. Win.</span>
+          <span className="competitions-hero-title-italic">Glory & Prizes.</span>
         </h1>
 
-        <p>
-          Join writing competitions, challenge your creativity,
-          earn exclusive rewards, and climb the Inkwell rankings.
+        <p className="competitions-hero-subtext">
+          Enter competitions curated for writers at every level. Win cash prizes, publication
+          opportunities, and the recognition your voice deserves.
         </p>
 
-        <div className="competition-stats">
-
-          <div>
-            <Trophy size={30} />
-            <h3>24</h3>
-            <span>Active Events</span>
-          </div>
-
-          <div>
-            <Users size={30} />
-            <h3>18K+</h3>
-            <span>Participants</span>
-          </div>
-
-          <div>
-            <Medal size={30} />
-            <h3>₹2L+</h3>
-            <span>Total Prize Pool</span>
-          </div>
-
+        <div className="competitions-hero-stats">
+          {competitionStats.map((stat) => (
+            <div key={stat.label} className="competitions-hero-stat">
+              <p className="competitions-hero-stat-value">{stat.value}</p>
+              <p className="competitions-hero-stat-label">{stat.label}</p>
+            </div>
+          ))}
         </div>
 
       </div>
-
     </section>
   );
 }
-
-export default CompetitionHero;

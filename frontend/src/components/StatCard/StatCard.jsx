@@ -1,17 +1,13 @@
-function StatCard({ number, label }) {
+import "./StatCard.css";
+
+export default function StatCard({ icon: Icon, value, label }) {
   return (
-    <div className="bg-[#1B1612] rounded-2xl p-8 text-center border border-yellow-500/20 hover:border-yellow-500 transition duration-300">
-
-      <h2 className="text-4xl font-bold text-yellow-500">
-        {number}
-      </h2>
-
-      <p className="mt-3 text-gray-400">
-        {label}
-      </p>
-
+    <div className="stat-card">
+      <div className="stat-card-value">
+        <Icon size={22} className="stat-card-icon" />
+        {value}
+      </div>
+      <p className="stat-card-label">{label}</p>
     </div>
   );
 }
-
-export default StatCard;

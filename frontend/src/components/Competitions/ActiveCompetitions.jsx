@@ -1,82 +1,77 @@
+import { Trophy, Clock, Users, PenLine, Flame, CheckCircle } from "lucide-react";
+import activeCompetitions from "../../data/activeCompetitions";
 import "./Competitions.css";
 
-function ActiveCompetitions() {
-
-  const competitions = [
-
-    {
-      id: 1,
-      title: "Fantasy World Cup",
-      prize: "₹10,000",
-      genre: "Fantasy",
-      days: "12 Days Left",
-    },
-
-    {
-      id: 2,
-      title: "Romance Challenge",
-      prize: "₹7,500",
-      genre: "Romance",
-      days: "8 Days Left",
-    },
-
-    {
-      id: 3,
-      title: "Mystery Marathon",
-      prize: "₹5,000",
-      genre: "Mystery",
-      days: "5 Days Left",
-    },
-
-  ];
-
+export default function ActiveCompetitions() {
   return (
+    <section className="active-competitions-section">
+      <div className="active-competitions-container">
 
-    <section className="competition-section">
+        <p className="active-competitions-tag">OPEN NOW</p>
+        <h2 className="active-competitions-title">Writing Competitions</h2>
 
-      <h2>🔥 Active Competitions</h2>
+        <div className="active-competitions-list">
+          {activeCompetitions.map((comp) => (
+            <div key={comp.id} className="competition-card">
 
-      <div className="competition-grid">
+              <div className="competition-card-cover">
+                {comp.cover ? (
+                  <img
+                    src={comp.cover}
+                    alt={comp.title}
+                    onError={(e) => { e.currentTarget.style.display = "none"; }}
+                  />
+                ) : (
+                  <span className="competition-cover-placeholder">📜</span>
+                )}
 
-        {competitions.map((competition) => (
+                <span className={`competition-status-badge ${comp.status === "Open" ? "open" : "closing"}`}>
+                  {comp.status === "Open" ? <CheckCircle size={13} /> : <Flame size={13} />}
+                  {comp.status === "Open" ? "OPEN" : "CLOSING SOON"}
+                </span>
+              </div>
 
-          <div
-            className="competition-card"
-            key={competition.id}
-          >
+              <div className="competition-card-body">
+                <div className="competition-card-main">
 
-            <span className="live-badge">
-              LIVE
-            </span>
+                  <h3>
+                    <Trophy size={20} className="competition-trophy-icon" />
+                    {comp.title}
+                  </h3>
+                  <p className="competition-organizer">Organized by {comp.organizer}</p>
+                  <p className="competition-description">{comp.description}</p>
 
-            <h3>{competition.title}</h3>
+                  <div className="competition-tags">
+                    <span className="competition-tag">GENRE: {comp.genre.toUpperCase()}</span>
+                    <span className="competition-tag">ELIGIBILITY: {comp.eligibility.toUpperCase()}</span>
+                    <span className="competition-tag competition-tag-entries">
+                      <Users size={13} /> {comp.entries.toLocaleString()} ENTRIES
+                    </span>
+                  </div>
 
-            <p>Prize Pool</p>
+                </div>
 
-            <h4>{competition.prize}</h4>
+                <div className="competition-card-side">
+                  <p className="competition-prize-label">Prize Pool</p>
+                  <p className="competition-prize-value">{comp.prizePool}</p>
 
-            <div className="competition-info">
+                  <div className="competition-deadline">
+                    <span><Clock size={14} /> Deadline</span>
+                    <span className="competition-deadline-date">{comp.deadline}</span>
+                  </div>
 
-              <span>{competition.genre}</span>
-
-              <span>{competition.days}</span>
+                  <button className="competition-apply-btn">
+                    <PenLine size={16} />
+                    Apply Now
+                  </button>
+                </div>
+              </div>
 
             </div>
-
-            <button>
-              Participate
-            </button>
-
-          </div>
-
-        ))}
+          ))}
+        </div>
 
       </div>
-
     </section>
-
   );
-
 }
-
-export default ActiveCompetitions;

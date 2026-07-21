@@ -1,55 +1,34 @@
+import { CalendarClock, DollarSign } from "lucide-react";
+import upcomingCompetitions from "../../data/upcomingCompetitions";
 import "./Competitions.css";
 
-function UpcomingCompetitions() {
-
-  const upcoming = [
-
-    {
-      title: "Sci-Fi Showdown",
-      date: "Starts July 28",
-    },
-
-    {
-      title: "Historical Fiction Fest",
-      date: "Starts August 2",
-    },
-
-    {
-      title: "Poetry Slam",
-      date: "Starts August 10",
-    },
-
-  ];
-
+export default function UpcomingCompetitions() {
   return (
+    <section className="upcoming-competitions-section">
+      <div className="upcoming-competitions-container">
 
-    <section className="competition-section">
+        <p className="upcoming-competitions-tag">COMING SOON</p>
+        <h2 className="upcoming-competitions-title">Upcoming Competitions</h2>
 
-      <h2>📅 Upcoming Competitions</h2>
+        <div className="upcoming-competitions-grid">
+          {upcomingCompetitions.map((comp) => (
+            <div key={comp.id} className="upcoming-competition-card">
+              <span className="upcoming-competition-genre">{comp.genre}</span>
 
-      <div className="upcoming-grid">
+              <h3>{comp.title}</h3>
+              <p className="upcoming-competition-organizer">Organized by {comp.organizer}</p>
 
-        {upcoming.map((item,index)=>(
+              <div className="upcoming-competition-meta">
+                <span><CalendarClock size={14} /> Opens {comp.opensDate}</span>
+                <span><DollarSign size={14} /> {comp.expectedPrize} expected</span>
+              </div>
 
-          <div
-            className="upcoming-card"
-            key={index}
-          >
-
-            <h3>{item.title}</h3>
-
-            <p>{item.date}</p>
-
-          </div>
-
-        ))}
+              <button className="upcoming-notify-btn">Notify Me</button>
+            </div>
+          ))}
+        </div>
 
       </div>
-
     </section>
-
   );
-
 }
-
-export default UpcomingCompetitions;

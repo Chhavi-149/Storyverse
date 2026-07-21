@@ -1,4 +1,4 @@
-import Navbar from "../../components/Navbar/Navbar";
+import PublicNavbar from "../../components/Common/PublicNavbar";
 import Hero from "../../components/Hero/Hero";
 import Statistics from "../../components/Statistics/Statistics";
 import FeaturedStories from "../../components/FeaturedStories/FeaturedStories";
@@ -9,10 +9,12 @@ import Testimonials from "../../components/Testimonials/Testimonials";
 import FinalCTA from "../../components/FinalCTA/FinalCTA";
 import Footer from "../../components/Footer/Footer";
 
-function LandingPage() {
+export default function LandingPage() {
   return (
-    <div className="bg-[#0B0907] text-white overflow-x-hidden">
-      <Navbar />
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f0e8]">
+
+      <PublicNavbar />
+
       <Hero />
       <Statistics />
       <FeaturedStories />
@@ -21,9 +23,9 @@ function LandingPage() {
       <CollaborationCTA />
       <Testimonials />
       <FinalCTA />
+
       <Footer />
+
     </div>
   );
 }
-
-export default LandingPage;

@@ -1,65 +1,40 @@
+import { Link } from "react-router-dom";
+import { Crown, Star, Eye, Zap, Flame, TrendingUp, BookOpen } from "lucide-react";
 import "./GenreSection.css";
-import {
-  Sparkles,
-  Heart,
-  Ghost,
-  Rocket,
-  ScrollText,
-  Shield,
-} from "lucide-react";
 
-const genres = [
-  {
-    icon: <Sparkles size={34} />,
-    title: "Fantasy",
-    stories: "25K Stories",
-  },
-  {
-    icon: <Heart size={34} />,
-    title: "Romance",
-    stories: "40K Stories",
-  },
-  {
-    icon: <Ghost size={34} />,
-    title: "Horror",
-    stories: "18K Stories",
-  },
-  {
-    icon: <Rocket size={34} />,
-    title: "Sci-Fi",
-    stories: "22K Stories",
-  },
-  {
-    icon: <ScrollText size={34} />,
-    title: "Historical",
-    stories: "12K Stories",
-  },
-  {
-    icon: <Shield size={34} />,
-    title: "Adventure",
-    stories: "30K Stories",
-  },
+const GENRES = [
+  { name: "Fantasy", icon: Crown },
+  { name: "Romance", icon: Star },
+  { name: "Mystery", icon: Eye },
+  { name: "Sci-Fi", icon: Zap },
+  { name: "Horror", icon: Flame },
+  { name: "Thriller", icon: TrendingUp },
+  { name: "Historical", icon: BookOpen },
+  { name: "Adventure", icon: BookOpen },
+  { name: "Drama", icon: BookOpen },
+  { name: "Poetry", icon: BookOpen },
+  { name: "Literary Fiction", icon: BookOpen },
+  { name: "Young Adult", icon: BookOpen },
 ];
 
-function GenreSection() {
+export default function GenreSection() {
   return (
     <section className="genre-section">
-      <div className="genre-container">
+      <div className="genre-section-container">
 
-        <div className="genre-heading">
-          <p>BROWSE</p>
-          <h2>Explore By Genre</h2>
-        </div>
+        <p className="genre-section-tag">EXPLORE BY GENRE</p>
+        <h2 className="genre-section-title">Find Your World</h2>
 
-        <div className="genre-grid">
-          {genres.map((genre) => (
-            <div className="genre-card" key={genre.title}>
-              <div className="genre-icon">{genre.icon}</div>
-
-              <h3>{genre.title}</h3>
-
-              <p>{genre.stories}</p>
-            </div>
+        <div className="genre-section-grid">
+          {GENRES.map(({ name, icon: Icon }) => (
+            <Link
+              key={name}
+              to={`/explore?genre=${encodeURIComponent(name)}`}
+              className="genre-section-pill"
+            >
+              <Icon size={16} />
+              {name}
+            </Link>
           ))}
         </div>
 
@@ -67,5 +42,3 @@ function GenreSection() {
     </section>
   );
 }
-
-export default GenreSection;

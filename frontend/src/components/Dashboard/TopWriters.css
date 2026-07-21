@@ -56,12 +56,13 @@
   border-radius: 999px;
   background: #2a2724;
   border: 1px solid #3a352c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #c9a15c;
+  overflow: hidden;
+}
+
+.writer-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .writer-info {

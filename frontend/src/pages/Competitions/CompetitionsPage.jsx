@@ -1,38 +1,25 @@
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
-import BackButton from "../../components/Common/BackButton";
-
+import PublicNavbar from "../../components/Common/PublicNavbar";
 import CompetitionHero from "../../components/Competitions/CompetitionHero";
 import ActiveCompetitions from "../../components/Competitions/ActiveCompetitions";
+import WritingResources from "../../components/Competitions/WritingResources";
 import UpcomingCompetitions from "../../components/Competitions/UpcomingCompetitions";
 import PastWinners from "../../components/Competitions/PastWinners";
+import Footer from "../../components/Footer/Footer";
 
-import "../../components/Competitions/Competitions.css";
-
-function CompetitionsPage() {
+export default function CompetitionsPage() {
   return (
-    <>
-      <Navbar />
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f0e8]">
 
-      <main className="competitions-page">
+      <PublicNavbar />
 
-        <div className="page-top">
-          <BackButton />
-        </div>
-
-        <CompetitionHero />
-
-        <ActiveCompetitions />
-
-        <UpcomingCompetitions />
-
-        <PastWinners />
-
-      </main>
+      <CompetitionHero />
+      <ActiveCompetitions />
+      <WritingResources />
+      <UpcomingCompetitions />
+      <PastWinners />
 
       <Footer />
-    </>
+
+    </div>
   );
 }
-
-export default CompetitionsPage;

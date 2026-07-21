@@ -1,10 +1,5 @@
+import topWriters from "../../data/topWriters";
 import "./TopWriters.css";
-
-const TOP_WRITERS = [
-  { rank: 1, name: 'Miriam Osei', followers: '48.2k' },
-  { rank: 2, name: 'Callum Vance', followers: '31.4k' },
-  { rank: 3, name: 'Reza Tahir', followers: '24.6k' },
-];
 
 export default function TopWriters() {
   return (
@@ -15,11 +10,13 @@ export default function TopWriters() {
       </div>
 
       <div className="top-writers-list">
-        {TOP_WRITERS.map((writer) => (
+        {topWriters.map((writer) => (
           <div key={writer.rank} className="top-writer-row">
             <span className="writer-rank">{writer.rank}</span>
 
-            <div className="writer-avatar">{writer.name.charAt(0)}</div>
+            <div className="writer-avatar">
+              <img src={writer.avatar} alt={writer.name} />
+            </div>
 
             <div className="writer-info">
               <h4>{writer.name}</h4>

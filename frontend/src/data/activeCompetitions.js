@@ -1,0 +1,43 @@
+const activeCompetitions = [
+  {
+    id: 1,
+    title: "The Midnight Manuscript",
+    organizer: "Inkwell Editorial",
+    description: "Write a mystery or thriller story that opens with the line: 'The letter had no return address, only a single pressed violet.'",
+    genre: "Mystery / Thriller",
+    eligibility: "Open to all writers",
+    entries: 847,
+    prizePool: "$2,500",
+    deadline: "Aug 15, 2026",
+    status: "Open",
+    cover: "/assets/covers/competition-midnight.jpg",
+  },
+  {
+    id: 2,
+    title: "Futures Unwritten",
+    organizer: "Nova Sci-Fi Society",
+    description: "Explore what humanity looks like 500 years from now—any subgenre of sci-fi welcome.",
+    genre: "Science Fiction",
+    eligibility: "Under 30 years old",
+    entries: 523,
+    prizePool: "$1,800",
+    deadline: "Sep 1, 2026",
+    status: "Open",
+    cover: "/assets/covers/competition-futures.jpg",
+  },
+  {
+    id: 3,
+    title: "Roots & Branches",
+    organizer: "Heritage Stories Foundation",
+    description: "A historical fiction competition celebrating untold stories from underrepresented cultures and communities.",
+    genre: "Historical Fiction",
+    eligibility: "Stories set before 1950",
+    entries: 1204,
+    prizePool: "$3,000",
+    deadline: "Jul 30, 2026",
+    status: "Closing Soon",
+    cover: "/assets/covers/competition-roots.jpg",
+  },
+];
+
+export default activeCompetitions;

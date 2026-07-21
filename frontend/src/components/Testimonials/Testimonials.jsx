@@ -1,65 +1,61 @@
+import { useState } from "react";
+import { Quote } from "lucide-react";
 import "./Testimonials.css";
 
-const testimonials = [
+const TESTIMONIALS = [
   {
-    name: "Sarah Johnson",
-    role: "Fantasy Author",
-    review:
-      "Inkwell transformed my writing journey. I've connected with amazing readers and even found co-authors for my novels.",
-    image: "https://i.pravatar.cc/150?img=48",
+    quote: "Inkwell gave me my first real audience. I posted my first chapter nervously at 11pm and woke up to 400 comments. This platform changed my life.",
+    name: "Yara Mensah",
+    role: "Author of 'The Glass Cartographer'",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop",
   },
   {
-    name: "Michael Adams",
-    role: "Sci-Fi Writer",
-    review:
-      "The competitions and community feedback helped me improve faster than I ever imagined. Highly recommended!",
-    image: "https://i.pravatar.cc/150?img=15",
+    quote: "The collaborative continuation feature let total strangers help me finish a story I'd abandoned for two years. It's the most alive a community has ever felt.",
+    name: "Callum Vance",
+    role: "Author of 'Salt & Starlight'",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop",
   },
   {
-    name: "Emily Carter",
-    role: "Reader",
-    review:
-      "I've discovered countless incredible stories here. Every visit introduces me to talented writers from around the world.",
-    image: "https://i.pravatar.cc/150?img=32",
+    quote: "I've entered three competitions on Inkwell and each one pushed my writing further than years of solo drafting ever did.",
+    name: "Reza Tahir",
+    role: "Author of 'The Hollow Parliament'",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
   },
 ];
 
-function Testimonials() {
+export default function Testimonials() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const current = TESTIMONIALS[activeIndex];
+
   return (
-    <section className="testimonials">
+    <section className="testimonials-section">
+      <div className="testimonials-container">
 
-      <div className="testimonial-heading">
+        <p className="testimonials-tag">TESTIMONIALS</p>
+        <h2 className="testimonials-title">What Our Writers Say</h2>
 
-        <p>TESTIMONIALS</p>
+        <Quote className="testimonials-quote-icon" size={40} />
 
-        <h2>Loved By Writers & Readers</h2>
+        <p className="testimonials-quote-text">"{current.quote}"</p>
 
-      </div>
+        <div className="testimonials-author">
+          <img src={current.avatar} alt={current.name} />
+          <h4>{current.name}</h4>
+          <p>{current.role}</p>
+        </div>
 
-      <div className="testimonial-grid">
-
-        {testimonials.map((item) => (
-
-          <div className="testimonial-card" key={item.name}>
-
-            <img src={item.image} alt={item.name} />
-
-            <p className="review">
-              "{item.review}"
-            </p>
-
-            <h3>{item.name}</h3>
-
-            <span>{item.role}</span>
-
-          </div>
-
-        ))}
+        <div className="testimonials-dots">
+          {TESTIMONIALS.map((_, i) => (
+            <button
+              key={i}
+              className={`testimonials-dot ${i === activeIndex ? "active" : ""}`}
+              onClick={() => setActiveIndex(i)}
+              aria-label={`Show testimonial ${i + 1}`}
+            />
+          ))}
+        </div>
 
       </div>
-
     </section>
   );
 }
-
-export default Testimonials;

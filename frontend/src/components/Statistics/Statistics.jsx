@@ -1,37 +1,22 @@
+import { BookOpen, PenLine, Users, Crown } from "lucide-react";
+import StatCard from "../StatCard/StatCard";
 import "./Statistics.css";
 
-function Statistics() {
-  const stats = [
-    {
-      number: "1.2M+",
-      label: "Stories Published",
-    },
-    {
-      number: "84K+",
-      label: "Active Writers",
-    },
-    {
-      number: "15M+",
-      label: "Monthly Readers",
-    },
-    {
-      number: "120+",
-      label: "Countries",
-    },
-  ];
+const STATS = [
+  { icon: BookOpen, value: "1.2M+", label: "Stories" },
+  { icon: PenLine, value: "84K+", label: "Writers" },
+  { icon: Users, value: "9.4M+", label: "Readers" },
+  { icon: Crown, value: "340+", label: "Competitions" },
+];
 
+export default function Statistics() {
   return (
-    <section className="statistics">
+    <section className="statistics-section">
       <div className="statistics-container">
-        {stats.map((item) => (
-          <div className="stat-card" key={item.label}>
-            <h2>{item.number}</h2>
-            <p>{item.label}</p>
-          </div>
+        {STATS.map((stat) => (
+          <StatCard key={stat.label} icon={stat.icon} value={stat.value} label={stat.label} />
         ))}
       </div>
     </section>
   );
 }
-
-export default Statistics;
