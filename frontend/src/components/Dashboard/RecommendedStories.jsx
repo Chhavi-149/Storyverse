@@ -1,10 +1,38 @@
 import "./RecommendedStories.css";
 
+import hollowParliamentCover from "../../assets/covers/hollow-parliament.jpg";
+import forgottenSeaCover from "../../assets/covers/echoes-of-the-forgotten-sea.jpg";
+import frequencyNineCover from "../../assets/covers/frequency-nine.jpg";
+import lastConfessionCover from "../../assets/covers/last-confession.jpg";
+
 const RECOMMENDED = [
-  { title: 'The Hollow Parliament', author: 'Reza Tahir', genre: 'THRILLER' },
-  { title: 'Echoes of the Forgotten Sea', author: 'Nneka Obi', genre: 'HISTORICAL' },
-  { title: 'Frequency Nine', author: 'Jude Nakamura', genre: 'SCI-FI' },
-  { title: 'The Last Confession', author: 'Sofia Andrade', genre: 'MYSTERY' },
+  {
+  title: "The Hollow Parliament",
+  author: "Reza Tahir",
+  genre: "THRILLER",
+  cover: hollowParliamentCover,
+},
+
+{
+  title: "Echoes of the Forgotten Sea",
+  author: "Nneka Obi",
+  genre: "HISTORICAL",
+  cover: forgottenSeaCover,
+},
+
+{
+  title: "Frequency Nine",
+  author: "Jude Nakamura",
+  genre: "SCI-FI",
+  cover: frequencyNineCover,
+},
+
+{
+  title: "The Last Confession",
+  author: "Sofia Andrade",
+  genre: "MYSTERY",
+  cover: lastConfessionCover,
+},
 ];
 
 export default function RecommendedStories() {
@@ -15,7 +43,15 @@ export default function RecommendedStories() {
       <div className="recommended-grid">
         {RECOMMENDED.map((story) => (
           <div key={story.title} className="recommended-card">
-            <div className="recommended-cover">📖</div>
+            <div className="recommended-cover">
+  <img
+    src={story.cover}
+    alt={story.title}
+    onError={(e) => {
+      e.currentTarget.style.display = "none";
+    }}
+  />
+</div>
 
             <div className="recommended-info">
               <span className="recommended-badge">{story.genre}</span>

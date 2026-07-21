@@ -1,9 +1,13 @@
 import "./ContinueReading.css";
 
+import cartographersDaughter from "../../assets/covers/cartographers-daughter.jpg";
+import frequencyNine from "../../assets/covers/frequency-nine.jpg";
+import saltAndStarlight from "../../assets/covers/salt-and-starlight.jpg";
+
 const READING_LIST = [
-  { title: "The Cartographer's Daughter", chapter: 23, totalChapters: 34, genre: 'FANTASY', progress: 68, cover: '/assets/covers/cartographer.jpg' },
-  { title: 'Frequency Nine', chapter: 14, totalChapters: 41, genre: 'SCI-FI', progress: 35, cover: '/assets/covers/frequency-nine.jpg' },
-  { title: 'Salt & Starlight', chapter: 20, totalChapters: 22, genre: 'ROMANCE', progress: 91, cover: '/assets/covers/salt-starlight.jpg' },
+  { title: "The Cartographer's Daughter", chapter: 23, totalChapters: 34, genre: 'FANTASY', progress: 68, cover: cartographersDaughter },
+  { title: 'Frequency Nine', chapter: 14, totalChapters: 41, genre: 'SCI-FI', progress: 35, cover: frequencyNine },
+  { title: 'Salt & Starlight', chapter: 20, totalChapters: 22, genre: 'ROMANCE', progress: 91, cover: saltAndStarlight },
 ];
 
 export default function ContinueReading() {

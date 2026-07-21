@@ -10,7 +10,7 @@ const activeCompetitions = [
     prizePool: "$2,500",
     deadline: "Aug 15, 2026",
     status: "Open",
-    cover: "/assets/covers/competition-midnight.jpg",
+    cover: "/src/assets/covers/competition-midnight.jpg",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const activeCompetitions = [
     prizePool: "$1,800",
     deadline: "Sep 1, 2026",
     status: "Open",
-    cover: "/assets/covers/competition-futures.jpg",
+    cover: "/src/assets/covers/futures.jpg",
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const activeCompetitions = [
     prizePool: "$3,000",
     deadline: "Jul 30, 2026",
     status: "Closing Soon",
-    cover: "/assets/covers/competition-roots.jpg",
+    cover: "/src/assets/covers/roots.jpg",
   },
 ];
 
