@@ -37,7 +37,7 @@ function App() {
         <Route path="/reader" element={<ReaderPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
-        <Route path="/story" element={<StoryPage />} />
+        <Route path="/story/:storyId" element={<StoryPage />} />
         <Route path="/competitions" element={<CompetitionsPage />} />
         <Route path="/rankings" element={<RankingsPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />

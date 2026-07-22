@@ -1,7 +1,10 @@
 import { PenTool, Hourglass, Flame } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import "./WeeklyChallenge.css";
 
 function WeeklyChallenge() {
+  const navigate = useNavigate();
+
   return (
     <div className="weekly-challenge">
 
@@ -31,7 +34,7 @@ function WeeklyChallenge() {
       </div>
 
       <div className="challenge-footer">
-        <button>
+        <button onClick={() => navigate("/editor")}>
           Accept Challenge
         </button>
       </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import StoryCard from "./StoryCard";
 import "./StoryGrid.css";
 
@@ -11,7 +12,9 @@ export default function StoryGrid({ stories, sortLabel, totalCount, onLoadMore, 
 
       <div className="story-grid">
         {stories.map((story) => (
-          <StoryCard key={story.id} story={story} />
+          <Link key={story.id} to={`/story/${story.id}`} className="story-grid-card-link">
+            <StoryCard story={story} />
+          </Link>
         ))}
       </div>
 

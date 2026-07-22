@@ -1,74 +1,132 @@
 import { Link } from "react-router-dom";
+import { Eye, Heart, BookOpen, Star, BookmarkPlus, Share2, Settings, PenLine } from "lucide-react";
+import "./Story.css";
 
-function StoryHero(){
+export default function StoryHero({
+  story,
+  isLiked,
+  onLikeToggle,
+  isBookmarked,
+  onBookmarkToggle,
+  onSettingsClick,
+}) {
+  return (
+    <section className="story-hero">
+      <div className="story-hero-container">
 
-return(
+        <div className="story-breadcrumb">
+          <Link to="/explore">Explore</Link>
+          <span>›</span>
+          <span className="story-breadcrumb-genre">{story.genre.toUpperCase()}</span>
+          <span>›</span>
+          <span className="story-breadcrumb-current">{story.title}</span>
+        </div>
 
-<section className="story-hero">
+        <div className="story-hero-main">
 
-<img
-src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80"
-alt="Story Cover"
-/>
+          <div className="story-hero-cover">
+            {story.cover ? (
+              <img
+                src={story.cover}
+                alt={story.title}
+                onError={(e) => { e.currentTarget.style.display = "none"; }}
+              />
+            ) : (
+              <span className="story-hero-cover-placeholder">📖</span>
+            )}
+          </div>
 
-<div className="story-details">
+          <div className="story-hero-info">
 
-<span className="story-genre">
-Fantasy
-</span>
+            <div className="story-hero-badges">
+              <span className="story-hero-badge genre">{story.genre.toUpperCase()}</span>
+              <span className={`story-hero-badge status status-${story.status.toLowerCase()}`}>
+                {story.status.toUpperCase()}
+              </span>
+            </div>
 
-<h1>
-Whispers of the Night
-</h1>
+            <h1 className="story-hero-title">{story.title}</h1>
 
-<p className="story-author">
+            <div className="story-hero-author-row">
+              <img src={story.authorAvatar} alt={story.author} />
+              <div>
+                <h4>{story.author}</h4>
+                <p>Author</p>
+              </div>
+            </div>
 
-by
+            <p className="story-hero-excerpt">"{story.excerpt}"</p>
 
-<Link to="/profile">
+            <div className="story-hero-tags">
+              {story.tags.map((tag) => (
+                <span key={tag} className="story-hero-tag">#{tag.replace(/\s+/g, "").toUpperCase()}</span>
+              ))}
+            </div>
 
-Sophia Carter
+            <div className="story-hero-stats">
+              <div className="story-stat-card">
+                <Eye size={18} />
+                <p>{story.views}</p>
+                <span>Views</span>
+              </div>
+              <div className="story-stat-card">
+                <Heart size={18} />
+                <p>{story.likes}</p>
+                <span>Likes</span>
+              </div>
+              <div className="story-stat-card">
+                <BookOpen size={18} />
+                <p>{story.chapters}</p>
+                <span>Chapters</span>
+              </div>
+              <div className="story-stat-card">
+                <Star size={18} />
+                <p>{story.rating}</p>
+                <span>Rating</span>
+              </div>
+            </div>
 
-</Link>
+            <div className="story-hero-actions">
+              <Link to={`/reader/${story.id}`} className="story-start-reading-btn">
+                <BookOpen size={17} />
+                Start Reading
+              </Link>
 
-</p>
+              <button className="story-continue-btn">
+                <PenLine size={17} />
+                Continue Story
+              </button>
 
-<p className="story-description">
+              <button
+                className={`story-icon-action-btn ${isLiked ? "active" : ""}`}
+                onClick={onLikeToggle}
+                aria-label="Like"
+              >
+                <Heart size={17} />
+                {story.likes}
+              </button>
 
-A forgotten kingdom awakens after centuries,
-forcing an unlikely heroine to uncover secrets
-that could change the fate of the world forever.
+              <button
+                className={`story-icon-action-btn ${isBookmarked ? "active" : ""}`}
+                onClick={onBookmarkToggle}
+                aria-label="Bookmark"
+              >
+                <BookmarkPlus size={17} />
+              </button>
 
-</p>
+              <button className="story-icon-action-btn" aria-label="Share">
+                <Share2 size={17} />
+              </button>
 
-<div className="story-buttons">
+              <button className="story-icon-action-btn" onClick={onSettingsClick} aria-label="Settings">
+                <Settings size={17} />
+              </button>
+            </div>
 
-<Link
-to="/reader"
-className="read-btn"
->
+          </div>
+        </div>
 
-Read Now
-
-</Link>
-
-<Link
-to="/explore"
-className="back-btn"
->
-
-Back to Explore
-
-</Link>
-
-</div>
-
-</div>
-
-</section>
-
-);
-
+      </div>
+    </section>
+  );
 }
-
-export default StoryHero;
