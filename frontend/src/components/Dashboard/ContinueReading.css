@@ -151,3 +151,8 @@
     height: 64px;
   }
 }
+.reading-row-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { Bookmark, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Bookmark, Clock, Quote } from "lucide-react";
 import myStories from "../../data/myStories";
 import bookmarkedStories from "../../data/bookmarkedStories";
 import achievements from "../../data/achievements";
 import readingHistory from "../../data/readingHistory";
+import exploreStories from "../../data/exploreStories";
+import { getAllHighlights } from "../../utils/readerStorage";
 import "./Profile.css";
 
-const TABS = ["Stories", "Bookmarks", "Achievements", "History"];
-
+const TABS = ["Stories", "Bookmarks", "Achievements", "History", "Highlights"];
 function CoverThumb({ cover, title }) {
   return (
     <div className="profile-card-cover">
@@ -22,7 +24,12 @@ function CoverThumb({ cover, title }) {
 
 export default function ProfileTabs({ initialTab = "Stories" }) {
   const [activeTab, setActiveTab] = useState(TABS.includes(initialTab) ? initialTab : "Stories");
+  const [myHighlights, setMyHighlights] = useState([]);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    setMyHighlights(getAllHighlights());
+  }, []);
   return (
     <section className="profile-tabs-section">
       <div className="profile-tabs-container">
@@ -105,6 +112,39 @@ export default function ProfileTabs({ initialTab = "Stories" }) {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {activeTab === "Highlights" && (
+          <div className="profile-highlights-list">
+            {myHighlights.length === 0 && (
+              <p className="profile-highlights-empty">
+                You haven't saved any highlights yet. Select text while reading to save your favorite lines.
+              </p>
+            )}
+
+            {myHighlights.map((h) => {
+              const story = exploreStories.find((s) => s.id === h.storyId);
+              if (!story) return null;
+
+              return (
+                <button
+                  key={h.id}
+                  className="profile-highlight-card"
+                  onClick={() => navigate(`/reader/${h.storyId}/${h.chapterNumber}?highlight=${h.id}`)}
+                >
+                  <Quote size={16} className="profile-highlight-quote-icon" />
+                  <p className="profile-highlight-text">"{h.text}"</p>
+                  <div className="profile-highlight-meta">
+                    <CoverThumb cover={story.cover} title={story.title} />
+                    <div>
+                      <h4>{story.title}</h4>
+                      <p>Chapter {h.chapterNumber}</p>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         )}
 

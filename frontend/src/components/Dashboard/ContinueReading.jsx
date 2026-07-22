@@ -1,12 +1,16 @@
+import { Link } from "react-router-dom";
+import readingProgress from "../../data/readingProgress";
+import exploreStories from "../../data/exploreStories";
 import "./ContinueReading.css";
 
-const READING_LIST = [
-  { title: "The Cartographer's Daughter", chapter: 23, totalChapters: 34, genre: 'FANTASY', progress: 68, cover: '/assets/covers/cartographer.jpg' },
-  { title: 'Frequency Nine', chapter: 14, totalChapters: 41, genre: 'SCI-FI', progress: 35, cover: '/assets/covers/frequency-nine.jpg' },
-  { title: 'Salt & Starlight', chapter: 20, totalChapters: 22, genre: 'ROMANCE', progress: 91, cover: '/assets/covers/salt-starlight.jpg' },
-];
-
 export default function ContinueReading() {
+  const readingList = readingProgress
+    .map((entry) => {
+      const story = exploreStories.find((s) => s.id === entry.storyId);
+      return story ? { ...story, ...entry } : null;
+    })
+    .filter(Boolean);
+
   return (
     <section className="continue-reading-container">
       <div className="section-heading">
@@ -15,38 +19,40 @@ export default function ContinueReading() {
       </div>
 
       <div className="reading-list-box">
-        {READING_LIST.map((book) => (
-          <div key={book.title} className="reading-row-item">
+        {readingList.map((book) => (
+          <Link key={book.storyId} to={`/story/${book.storyId}`} className="reading-row-item-link">
+            <div className="reading-row-item">
 
-            <div className="cover-wrapper">
-              <span className="cover-placeholder">📖</span>
-              {book.cover && (
-                <img
-                  src={book.cover}
-                  alt={book.title}
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-              )}
-            </div>
-
-            <div className="reading-info-content">
-              <div className="reading-info-header">
-                <div>
-                  <h3>{book.title}</h3>
-                  <p>Chapter {book.chapter} of {book.totalChapters}</p>
-                </div>
-                <span className="genre-badge">{book.genre}</span>
+              <div className="cover-wrapper">
+                <span className="cover-placeholder">📖</span>
+                {book.cover && (
+                  <img
+                    src={book.cover}
+                    alt={book.title}
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
+                )}
               </div>
 
-              <div className="progress-container">
-                <div className="progress-track">
-                  <div className="progress-fill" style={{ width: `${book.progress}%` }} />
+              <div className="reading-info-content">
+                <div className="reading-info-header">
+                  <div>
+                    <h3>{book.title}</h3>
+                    <p>Chapter {book.chapter} of {book.totalChapters}</p>
+                  </div>
+                  <span className="genre-badge">{book.genre.toUpperCase()}</span>
                 </div>
-                <span className="progress-text">{book.progress}% complete</span>
-              </div>
-            </div>
 
-          </div>
+                <div className="progress-container">
+                  <div className="progress-track">
+                    <div className="progress-fill" style={{ width: `${book.progress}%` }} />
+                  </div>
+                  <span className="progress-text">{book.progress}% complete</span>
+                </div>
+              </div>
+
+            </div>
+          </Link>
         ))}
       </div>
     </section>

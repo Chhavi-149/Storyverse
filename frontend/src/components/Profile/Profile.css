@@ -453,3 +453,72 @@
     overflow-x: auto;
   }
 }
+.profile-highlights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-highlights-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #7a7468;
+  font-size: 0.9rem;
+}
+
+.profile-highlight-card {
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #2a2724;
+  border-radius: 12px;
+  background: rgba(18, 17, 14, 0.6);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.profile-highlight-card:hover {
+  border-color: rgba(201, 161, 92, 0.4);
+}
+
+.profile-highlight-quote-icon {
+  color: #c9a15c;
+  margin-bottom: 10px;
+}
+
+.profile-highlight-text {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e8e2d6;
+  margin-bottom: 16px;
+}
+
+.profile-highlight-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #211e1a;
+}
+
+.profile-highlight-meta .profile-card-cover {
+  width: 40px;
+  aspect-ratio: unset;
+  height: 54px;
+  flex-shrink: 0;
+}
+
+.profile-highlight-meta h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #f5f0e8;
+}
+
+.profile-highlight-meta p {
+  font-size: 0.75rem;
+  color: #9a9488;
+}
