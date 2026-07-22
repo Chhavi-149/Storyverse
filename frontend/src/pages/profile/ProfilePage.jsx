@@ -1,30 +1,39 @@
-import BackButton from "../../components/Common/BackButton";
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import DashboardNavbar from "../../components/Dashboard/DashboardNavbar";
+import DashboardSidebar from "../../components/Dashboard/DashboardSidebar";
+import ProfileHero from "../../components/Profile/ProfileHero";
+import ProfileTabs from "../../components/Profile/ProfileTabs";
+import Footer from "../../components/Footer/Footer";
+import currentUser from "../../data/currentUser";
 
-import ProfileHeader from "../../components/Profile/ProfileHeader";
-import ProfileStats from "../../components/Profile/ProfileStats";
-import StoryTabs from "../../components/Profile/StoryTabs";
-import StoryGrid from "../../components/Profile/StoryGrid";
+export default function ProfilePage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchParams] = useSearchParams();
+  const [isFollowing, setIsFollowing] = useState(false);
 
-import "../../components/Profile/Profile.css";
+  const initialTab = searchParams.get("tab") || "Stories";
 
-function ProfilePage() {
+  // No backend/user-id routing yet, so every /profile view is treated as the logged-in user's own profile.
+  const isOwnProfile = true;
+
   return (
-    <main className="profile-page">
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f0e8]">
 
-      <div className="page-top">
-        <BackButton />
-      </div>
+      <DashboardNavbar onOpenSidebar={() => setSidebarOpen(true)} />
+      <DashboardSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <ProfileHeader />
+      <ProfileHero
+        user={currentUser}
+        isOwnProfile={isOwnProfile}
+        isFollowing={isFollowing}
+        onFollowToggle={() => setIsFollowing((prev) => !prev)}
+      />
 
-      <ProfileStats />
+      <ProfileTabs initialTab={initialTab} />
 
-      <StoryTabs />
+      <Footer />
 
-      <StoryGrid />
-
-    </main>
+    </div>
   );
 }
-
-export default ProfilePage;

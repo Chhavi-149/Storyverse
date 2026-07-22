@@ -1,122 +1,121 @@
-import { Camera } from "lucide-react";
+import { useState, useRef } from "react";
+import { Save } from "lucide-react";
+import "./EditProfile.css";
 
-function EditProfileForm() {
+export default function EditProfileForm({ user, onSave }) {
+  const fileInputRef = useRef(null);
+
+  const [formData, setFormData] = useState({
+    displayName: user.displayName,
+    username: user.username,
+    email: user.email,
+    website: user.website,
+    bio: user.bio,
+  });
+  const [avatar, setAvatar] = useState(user.avatar);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => setAvatar(reader.result);
+    reader.readAsDataURL(file);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSave?.({ ...formData, avatar });
+  };
+
   return (
-    <form className="edit-profile-form">
+    <form className="settings-panel" onSubmit={handleSubmit}>
+      <h2>Edit Profile</h2>
 
-      {/* Cover */}
-
-      <div className="cover-upload">
-
-        <div className="cover-preview">
-
-          <button type="button" className="upload-btn">
-            <Camera size={18} />
-            Change Cover
+      <div className="settings-photo-row">
+        <img src={avatar} alt={formData.displayName} />
+        <div>
+          <button
+            type="button"
+            className="settings-change-photo-btn"
+            onClick={() => fileInputRef.current.click()}
+          >
+            Change Photo
           </button>
-
+          <p className="settings-photo-hint">JPG, PNG up to 5MB</p>
         </div>
-
-      </div>
-
-      {/* Avatar */}
-
-      <div className="avatar-upload">
-
-  <div className="avatar-placeholder">
-
-    <div className="edit-avatar">
-      <Camera size={52} strokeWidth={1.8} />
-    </div>
-
-    <p className="upload-text">
-      No profile photo
-    </p>
-
-  </div>
-
-  <button
-    type="button"
-    className="upload-btn"
-  >
-    <Camera size={18} />
-    Change Photo
-  </button>
-
-</div>
-
-      {/* Full Name */}
-
-      <div className="form-group">
-
-        <label>Full Name</label>
-
         <input
-          type="text"
-          defaultValue="Emily Carter"
+          type="file"
+          accept="image/jpeg,image/png"
+          ref={fileInputRef}
+          onChange={handlePhotoChange}
+          hidden
         />
-
       </div>
 
-      {/* Username */}
-
-      <div className="form-group">
-
-        <label>Username</label>
-
+      <div className="settings-field">
+        <label htmlFor="displayName">Display Name</label>
         <input
+          id="displayName"
+          name="displayName"
           type="text"
-          defaultValue="@emilywrites"
+          value={formData.displayName}
+          onChange={handleChange}
         />
-
       </div>
 
-      {/* Email */}
-
-      <div className="form-group">
-
-        <label>Email</label>
-
+      <div className="settings-field">
+        <label htmlFor="username">Username</label>
         <input
+          id="username"
+          name="username"
+          type="text"
+          value={formData.username}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="settings-field">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          name="email"
           type="email"
-          defaultValue="emily@gmail.com"
+          value={formData.email}
+          onChange={handleChange}
         />
-
       </div>
 
-      {/* Bio */}
+      <div className="settings-field">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          name="website"
+          type="url"
+          value={formData.website}
+          onChange={handleChange}
+        />
+      </div>
 
-      <div className="form-group">
-
-        <label>Bio</label>
-
+      <div className="settings-field">
+        <label htmlFor="bio">Bio</label>
         <textarea
-          rows="5"
-          defaultValue="Fantasy writer • Dreamer • Coffee addict ☕ Creating worlds one chapter at a time."
-        ></textarea>
-
+          id="bio"
+          name="bio"
+          value={formData.bio}
+          onChange={handleChange}
+        />
       </div>
 
-      <div className="button-group">
-
-        <button
-          type="button"
-          className="cancel-btn"
-        >
-          Cancel
-        </button>
-
-        <button
-          type="submit"
-          className="save-btn"
-        >
+      <div className="settings-save-row">
+        <button type="submit" className="settings-save-btn">
+          <Save size={16} />
           Save Changes
         </button>
-
       </div>
-
     </form>
   );
 }
-
-export default EditProfileForm;

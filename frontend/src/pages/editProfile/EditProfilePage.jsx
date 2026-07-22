@@ -1,34 +1,55 @@
-import BackButton from "../../components/Common/BackButton";
+import { useState } from "react";
+import DashboardNavbar from "../../components/Dashboard/DashboardNavbar";
+import DashboardSidebar from "../../components/Dashboard/DashboardSidebar";
+import SettingsSidebar from "../../components/EditProfile/SettingsSidebar";
 import EditProfileForm from "../../components/EditProfile/EditProfileForm";
+import Footer from "../../components/Footer/Footer";
+import currentUser from "../../data/currentUser";
 import "../../components/EditProfile/EditProfile.css";
 
-function EditProfilePage() {
+export default function EditProfilePage() {
+  const [dashboardSidebarOpen, setDashboardSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("Edit Profile");
+
+  const handleSave = (updatedData) => {
+    console.log("Saving profile changes:", updatedData);
+    // Real save logic (API/Firebase call) goes here later
+  };
+
   return (
-    <main className="edit-profile-page">
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f0e8]">
 
-      <div className="page-top">
-        <BackButton />
-      </div>
+      <DashboardNavbar onOpenSidebar={() => setDashboardSidebarOpen(true)} />
+      <DashboardSidebar open={dashboardSidebarOpen} onClose={() => setDashboardSidebarOpen(false)} />
 
-      <div className="edit-profile-container">
+      <div className="edit-profile-page">
+        <div className="edit-profile-container">
 
-        <div className="edit-profile-header">
+          <p className="edit-profile-tag">ACCOUNT</p>
+          <h1 className="edit-profile-title">Settings</h1>
 
-          <h1>Edit Profile</h1>
+          <div className="edit-profile-layout">
+            <SettingsSidebar activeSection={activeSection} onSectionChange={setActiveSection} />
 
-          <p>
-            Update your profile information and personalize
-            your author page.
-          </p>
+            {activeSection === "Edit Profile" && (
+              <EditProfileForm user={currentUser} onSave={handleSave} />
+            )}
 
+            {activeSection !== "Edit Profile" && (
+              <div className="settings-panel">
+                <h2>{activeSection}</h2>
+                <p className="settings-placeholder-text">
+                  This section hasn't been built yet — let me know if you'd like to design it next.
+                </p>
+              </div>
+            )}
+
+          </div>
         </div>
-
-        <EditProfileForm />
-
       </div>
 
-    </main>
+      <Footer />
+
+    </div>
   );
 }
-
-export default EditProfilePage;

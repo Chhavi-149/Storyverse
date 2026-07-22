@@ -25,7 +25,9 @@ export default function FeaturedStories() {
 
         <div className="featured-stories-grid">
           {featured.map((story) => (
-            <StoryCard key={story.id} story={story} />
+            <Link key={story.id} to={`/story/${story.id}`} className="featured-story-link">
+              <StoryCard story={story} />
+            </Link>
           ))}
         </div>
 

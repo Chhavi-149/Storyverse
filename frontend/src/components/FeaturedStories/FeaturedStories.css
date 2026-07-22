@@ -70,3 +70,8 @@
     font-size: 1.7rem;
   }
 }
+.featured-story-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

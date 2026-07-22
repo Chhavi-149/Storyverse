@@ -47,3 +47,8 @@
     grid-template-columns: 1fr;
   }
 }
+.story-grid-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
