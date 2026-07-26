@@ -4,7 +4,7 @@ const novelRankings = [
     title: "The Cartographer's Daughter",
     author: "Miriam Osei",
     genre: "FANTASY",
-    cover: "/assets/covers/cartographer.jpg",
+    cover: "/src/assets/covers/cartographers-daughter.jpg",
     stats: {
       Daily: { views: "8.2k", likes: "620", comments: "210", rating: 4.8, change: 1 },
       Weekly: { views: "142k", likes: "8.9k", comments: "3.1k", rating: 4.8, change: null },
@@ -17,7 +17,7 @@ const novelRankings = [
     title: "Salt & Starlight",
     author: "Callum Vance",
     genre: "ROMANCE",
-    cover: "/assets/covers/salt-starlight.jpg",
+    cover: "/src/assets/covers/salt-and-starlight.jpg",
     stats: {
       Daily: { views: "9.1k", likes: "710", comments: "260", rating: 4.9, change: 2 },
       Weekly: { views: "99k", likes: "6.2k", comments: "2.4k", rating: 4.9, change: 1 },
@@ -30,7 +30,7 @@ const novelRankings = [
     title: "The Hollow Parliament",
     author: "Reza Tahir",
     genre: "THRILLER",
-    cover: "/assets/covers/hollow-parliament.jpg",
+    cover: "/src/assets/covers/hollow-parliament.jpg",
     stats: {
       Daily: { views: "4.6k", likes: "340", comments: "140", rating: 4.6, change: null },
       Weekly: { views: "76k", likes: "4.3k", comments: "1.7k", rating: 4.6, change: null },
@@ -43,7 +43,7 @@ const novelRankings = [
     title: "Echoes of the Forgotten Sea",
     author: "Nneka Obi",
     genre: "HISTORICAL",
-    cover: "/assets/covers/forgotten-sea.jpg",
+    cover: "/src/assets/covers/echoes-of-the-forgotten-sea.jpg",
     stats: {
       Daily: { views: "3.9k", likes: "290", comments: "95", rating: 4.7, change: 8 },
       Weekly: { views: "54k", likes: "3.2k", comments: "1.1k", rating: 4.7, change: 8 },
@@ -56,7 +56,7 @@ const novelRankings = [
     title: "Frequency Nine",
     author: "Jude Nakamura",
     genre: "SCI-FI",
-    cover: "/assets/covers/frequency-nine.jpg",
+    cover: "/src/assets/covers/frequency-nine.jpg",
     stats: {
       Daily: { views: "5.8k", likes: "410", comments: "180", rating: 4.8, change: null },
       Weekly: { views: "89k", likes: "5.8k", comments: "1.9k", rating: 4.8, change: 2 },
@@ -69,7 +69,7 @@ const novelRankings = [
     title: "The Last Confession",
     author: "Sofia Andrade",
     genre: "MYSTERY",
-    cover: "/assets/covers/last-confession.jpg",
+    cover: "/src/assets/covers/last-confession.jpg",
     stats: {
       Daily: { views: "3.1k", likes: "230", comments: "88", rating: 4.5, change: null },
       Weekly: { views: "64k", likes: "4.0k", comments: "1.5k", rating: 4.5, change: null },

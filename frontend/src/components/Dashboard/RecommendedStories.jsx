@@ -17,7 +17,15 @@ export default function RecommendedStories() {
         {recommended.map((story) => (
           <Link key={story.id} to={`/story/${story.id}`} className="recommended-card-link">
             <div className="recommended-card">
-              <div className="recommended-cover">📖</div>
+
+            <div className="recommended-cover">
+  <img
+    src={story.cover}
+    alt={story.title}
+    className="recommended-cover-image"
+  />
+</div>
+
 
               <div className="recommended-info">
                 <span className="recommended-badge">{story.genre.toUpperCase()}</span>
