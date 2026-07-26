@@ -1,34 +1,38 @@
-import { Eye, Heart, BookOpen, Star } from "lucide-react";
-import "./StoryCard.css";
+import { Link } from "react-router-dom";
 
-export default function StoryCard({ story }) {
+function StoryCard({ title, author, genre, rating }) {
   return (
-    <article className="story-card">
+    <Link
+      to="/story"
+      className="block bg-[#1B1612] rounded-2xl p-6 border border-yellow-500/20 hover:border-yellow-500 transition duration-300 hover:scale-[1.02]"
+    >
 
-      <div className="story-cover">
-        <span className="story-genre-badge">{story.genre}</span>
-        {story.cover && (
-          <img
-            src={story.cover}
-            alt={story.title}
-            onError={(e) => { e.currentTarget.style.display = "none"; }}
-          />
-        )}
+      <div className="h-40 rounded-xl bg-[#2A231C] flex items-center justify-center text-5xl">
+        📖
       </div>
 
-      <div className="story-card-body">
-        <h3 className="story-title">{story.title}</h3>
-        <p className="story-author">by {story.author}</p>
-        <p className="story-excerpt">{story.excerpt}</p>
+      <h3 className="text-xl font-bold text-white mt-5">
+        {title}
+      </h3>
 
-        <div className="story-stats">
-          <span><Eye size={14} /> {story.views}</span>
-          <span><Heart size={14} /> {story.likes}</span>
-          <span><BookOpen size={14} /> {story.chapters} ch</span>
-          <span className="story-rating"><Star size={14} /> {story.rating}</span>
-        </div>
+      <p className="text-gray-400 mt-2">
+        by {author}
+      </p>
+
+      <div className="flex justify-between items-center mt-6">
+
+        <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm">
+          {genre}
+        </span>
+
+        <span className="text-yellow-500">
+          ⭐ {rating}
+        </span>
+
       </div>
 
-    </article>
+    </Link>
   );
 }
+
+export default StoryCard;

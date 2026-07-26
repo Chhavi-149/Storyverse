@@ -10,8 +10,8 @@ import TrendingStories from "../../components/Dashboard/TrendingStories";
 import RecommendedStories from "../../components/Dashboard/RecommendedStories";
 import TopWriters from "../../components/Dashboard/TopWriters";
 import NovelRankings from "../../components/Dashboard/NovelRankings";
-import DraftStories from "../../components/Dashboard/DraftStories";
-import DashboardFooter from "../../components/Dashboard/DashboardFooter";
+
+import Footer from "../../components/Footer/Footer";
 
 import "../../components/Dashboard/DashboardLayout.css";
 
@@ -41,7 +41,7 @@ export default function DashboardPage() {
               <ContinueReading />
               <TrendingStories />
               <RecommendedStories />
-              <DraftStories />
+             
             </div>
 
             {/* Right Sidebar (~1/3 width) */}
@@ -57,7 +57,7 @@ export default function DashboardPage() {
 
       </main>
 
-      <DashboardFooter />
+      <Footer />
 
     </div>
   );

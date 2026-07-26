@@ -34,7 +34,7 @@ function App() {
         />
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/editor" element={<EditorPage />} />
-        <Route path="/reader" element={<ReaderPage />} />
+        <Route path="/reader/:storyId/:chapterNumber" element={<ReaderPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
         <Route path="/story/:storyId" element={<StoryPage />} />

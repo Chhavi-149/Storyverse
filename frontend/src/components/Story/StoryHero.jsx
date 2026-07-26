@@ -87,7 +87,7 @@ export default function StoryHero({
             </div>
 
             <div className="story-hero-actions">
-              <Link to={`/reader/${story.id}`} className="story-start-reading-btn">
+              <Link to={`/reader/${story.id}/1`} className="story-start-reading-btn">
                 <BookOpen size={17} />
                 Start Reading
               </Link>
