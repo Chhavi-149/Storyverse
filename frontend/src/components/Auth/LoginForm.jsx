@@ -42,18 +42,17 @@ function LoginForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    try {
-      login(formData.email, formData.password);
-      navigate("/dashboard");
-    } catch (err) {
-      setErrors({ general: err.message });
-    }
-  };
+  
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!validateForm()) return;
+  try {
+    await login(formData.email, formData.password);
+    navigate("/dashboard");
+  } catch (err) {
+    setErrors({ general: err.message });
+  }
+};
 
   return (
     <form className="auth-form" onSubmit={handleSubmit} noValidate>

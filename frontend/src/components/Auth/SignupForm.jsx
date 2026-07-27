@@ -115,26 +115,24 @@ function SignupForm() {
     setErrors({});
     setStep((s) => s - 1);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!validateStep(3)) return;
-
-    try {
-      signup({
-        username: formData.username,
-        email: formData.email,
-        photo: formData.photo,
-        password: formData.password,
-        genres: formData.genres,
-      });
-      navigate("/dashboard");
-    } catch (err) {
-      setErrors({ general: err.message });
-    }
-  };
-
+   
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!validateStep(3)) return;
+  try {
+    await signup({
+      username: formData.username,
+      email: formData.email,
+      photo: formData.photo,
+      password: formData.password,
+      genres: formData.genres,
+    });
+    navigate("/dashboard");
+  } catch (err) {
+    setErrors({ general: err.message });
+  }
+};
+  
   const { title, subtitle } = STEP_CONTENT[step];
 
   return (
