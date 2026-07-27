@@ -1,59 +1,82 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { auth, db } from "../firebase/firebase";
 
 const AuthContext = createContext();
 
-const USERS_KEY = "inkwell_users";
-const CURRENT_USER_KEY = "inkwell_current_user";
-
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(() => {
-    const stored = localStorage.getItem(CURRENT_USER_KEY);
-    return stored ? JSON.parse(stored) : null;
-  });
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
-  const getUsers = () => JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        const profileSnap = await getDoc(doc(db, "users", firebaseUser.uid));
+        const profileData = profileSnap.exists() ? profileSnap.data() : {};
 
-  const signup = (userData) => {
-    const users = getUsers();
+        setCurrentUser({
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          username: profileData.username || firebaseUser.displayName || "",
+          photo: profileData.photo || firebaseUser.photoURL || "",
+          genres: profileData.genres || [],
+        });
+      } else {
+        setCurrentUser(null);
+      }
+      setAuthLoading(false);
+    });
 
-    if (users.some((u) => u.email === userData.email)) {
-      throw new Error("An account with this email already exists.");
-    }
+    return () => unsubscribe();
+  }, []);
 
-    const newUser = { id: Date.now().toString(), ...userData };
-    users.push(newUser);
+  const signup = async ({ username, email, photo, password, genres }) => {
+    const credential = await createUserWithEmailAndPassword(auth, email, password);
+    const firebaseUser = credential.user;
 
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
-    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(newUser));
+    await updateProfile(firebaseUser, { displayName: username });
+
+    const profileData = { username, email, photo: photo || "", genres: genres || [] };
+    await setDoc(doc(db, "users", firebaseUser.uid), profileData);
+
+    const newUser = { uid: firebaseUser.uid, ...profileData };
     setCurrentUser(newUser);
-
     return newUser;
   };
 
-  const login = (email, password) => {
-    const users = getUsers();
-    const found = users.find(
-      (u) => u.email === email && u.password === password
-    );
+  const login = async (email, password) => {
+    const credential = await signInWithEmailAndPassword(auth, email, password);
+    const firebaseUser = credential.user;
 
-    if (!found) {
-      throw new Error("Invalid email or password.");
-    }
+    const profileSnap = await getDoc(doc(db, "users", firebaseUser.uid));
+    const profileData = profileSnap.exists() ? profileSnap.data() : {};
 
-    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(found));
-    setCurrentUser(found);
-
-    return found;
+    const user = {
+      uid: firebaseUser.uid,
+      email: firebaseUser.email,
+      username: profileData.username || "",
+      photo: profileData.photo || "",
+      genres: profileData.genres || [],
+    };
+    setCurrentUser(user);
+    return user;
   };
 
-  const logout = () => {
-    localStorage.removeItem(CURRENT_USER_KEY);
+  const logout = async () => {
+    await signOut(auth);
     setCurrentUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, signup, login, logout }}>
-      {children}
+    <AuthContext.Provider value={{ currentUser, signup, login, logout, authLoading }}>
+      {!authLoading && children}
     </AuthContext.Provider>
   );
 }
