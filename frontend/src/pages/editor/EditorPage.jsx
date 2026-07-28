@@ -1,8 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import EditorToolbar from "../../components/Editor/EditorToolbar";
 import EditorWorkspace from "../../components/Editor/EditorWorkspace";
 import EditorSidebar from "../../components/Editor/EditorSidebar";
 import backgroundMusic from "../../data/backgroundMusic";
+import { useAuth } from "../../context/AuthContext";
+import { publishStory, saveDraft } from "../../services/storyService";
 import "../../components/Editor/Editor.css";
 
 function stripHtml(html) {
@@ -12,6 +15,9 @@ function stripHtml(html) {
 }
 
 export default function EditorPage() {
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+
   const editorRef = useRef(null);
   const autosaveTimerRef = useRef(null);
   const audioRef = useRef(null);
@@ -28,6 +34,8 @@ export default function EditorPage() {
   const [moods, setMoods] = useState([]);
 
   const [isSaved, setIsSaved] = useState(true);
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [publishError, setPublishError] = useState("");
 
   const plainText = stripHtml(content);
   const wordCount = plainText.trim() ? plainText.trim().split(/\s+/).length : 0;
@@ -82,15 +90,43 @@ export default function EditorPage() {
     );
   };
 
-  const handleSaveDraft = () => {
-    const draft = { title, content, genre, tags, coverImage, savedAt: new Date().toISOString() };
-    localStorage.setItem("inkwell_draft", JSON.stringify(draft));
-    setIsSaved(true);
+  const handleSaveDraft = async () => {
+    if (!currentUser) {
+      setPublishError("Please log in to save a draft.");
+      return;
+    }
+    try {
+      await saveDraft({ title, content, genre, tags, coverImage, author: currentUser });
+      setIsSaved(true);
+    } catch (err) {
+      console.error(err);
+      setPublishError("Couldn't save draft. Please try again.");
+    }
   };
 
-  const handlePublish = () => {
-    console.log("Publishing story:", { title, content, genre, tags, coverImage, moods, music });
-    // Real publish logic (API/Firebase call) goes here later
+  const handlePublish = async () => {
+    if (!currentUser) {
+      setPublishError("Please log in to publish.");
+      return;
+    }
+    setPublishError("");
+    setIsPublishing(true);
+    try {
+      const published = await publishStory({
+        title,
+        content,
+        genre,
+        tags,
+        coverImage,
+        author: currentUser,
+      });
+      navigate(`/story/${published.id}`);
+    } catch (err) {
+      console.error(err);
+      setPublishError(err.message || "Publishing failed. Please try again.");
+    } finally {
+      setIsPublishing(false);
+    }
   };
 
   return (
@@ -102,7 +138,14 @@ export default function EditorPage() {
           onSaveDraft={handleSaveDraft}
           onPublish={handlePublish}
           isSaved={isSaved}
+          isPublishing={isPublishing}
         />
+
+        {publishError && (
+          <p style={{ color: "#e05252", textAlign: "center", padding: "8px 0" }}>
+            {publishError}
+          </p>
+        )}
 
         <EditorWorkspace
           title={title}

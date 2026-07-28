@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { MessageSquare, Heart } from "lucide-react";
-import currentUser from "../../data/currentUser";
+import { useAuth } from "../../context/AuthContext";
 import "./Story.css";
 
 export default function StoryComments({ comments, onAddComment }) {
+  const { currentUser } = useAuth();
   const [draft, setDraft] = useState("");
   const [likedIds, setLikedIds] = useState([]);
 
@@ -30,7 +31,7 @@ export default function StoryComments({ comments, onAddComment }) {
         </div>
 
         <div className="story-comment-input-row">
-          <img src={currentUser.avatar} alt={currentUser.displayName} />
+          <img src={currentUser?.photo || ""} alt={currentUser?.username || "You"} />
           <div className="story-comment-input-wrap">
             <textarea
               placeholder="Share your thoughts on this chapter..."

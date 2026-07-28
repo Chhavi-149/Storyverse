@@ -1,29 +1,24 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './DashboardLayout.css';
 import './GenreFilter.css';
 
 const GENRES = [
-  'All',
-  'Fantasy',
-  'Romance',
-  'Mystery',
-  'Sci-Fi',
-  'Horror',
-  'Thriller',
-  'Historical',
-  'Adventure',
-  'Drama',
-  'Poetry',
-  'Literary Fiction',
-  'Young Adult',
+  'All', 'Fantasy', 'Romance', 'Mystery', 'Sci-Fi', 'Horror', 'Thriller',
+  'Historical', 'Adventure', 'Drama', 'Poetry', 'Literary Fiction', 'Young Adult',
 ];
 
-export default function GenreFilter({ onSelect }) {
+export default function GenreFilter() {
   const [active, setActive] = useState('All');
+  const navigate = useNavigate();
 
   const handleClick = (genre) => {
     setActive(genre);
-    onSelect?.(genre);
+    if (genre === 'All') {
+      navigate('/explore');
+    } else {
+      navigate(`/explore?genre=${encodeURIComponent(genre)}`);
+    }
   };
 
   return (
@@ -43,3 +38,4 @@ export default function GenreFilter({ onSelect }) {
     </div>
   );
 }
+

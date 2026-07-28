@@ -2,6 +2,21 @@ import { Link } from "react-router-dom";
 import { Eye, Heart, BookOpen, Star, BookmarkPlus, Share2, Settings, PenLine } from "lucide-react";
 import "./Story.css";
 
+function parseCount(val) {
+  if (typeof val === "number") return val;
+  if (!val) return 0;
+  const str = String(val).trim().toLowerCase();
+  if (str.endsWith("k")) return Math.round(parseFloat(str) * 1000);
+  if (str.endsWith("m")) return Math.round(parseFloat(str) * 1000000);
+  return parseInt(str, 10) || 0;
+}
+
+function formatCount(n) {
+  if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+  return String(n);
+}
+
 export default function StoryHero({
   story,
   isLiked,
@@ -9,6 +24,9 @@ export default function StoryHero({
   isBookmarked,
   onBookmarkToggle,
   onSettingsClick,
+  onContinueStory,
+  onShare,
+  shareCopied,
 }) {
   return (
     <section className="story-hero">
@@ -69,11 +87,12 @@ export default function StoryHero({
                 <p>{story.views}</p>
                 <span>Views</span>
               </div>
+              
               <div className="story-stat-card">
-                <Heart size={18} />
-                <p>{story.likes}</p>
-                <span>Likes</span>
-              </div>
+  <Heart size={18} />
+  <p>{formatCount(parseCount(story.likes) + (isLiked ? 1 : 0))}</p>
+  <span>Likes</span>
+</div> 
               <div className="story-stat-card">
                 <BookOpen size={18} />
                 <p>{story.chapters}</p>
@@ -92,19 +111,19 @@ export default function StoryHero({
                 Start Reading
               </Link>
 
-              <button className="story-continue-btn">
-                <PenLine size={17} />
-                Continue Story
-              </button>
+             <button className="story-continue-btn" onClick={onContinueStory}>
+             <PenLine size={17} />
+              Continue Story
+             </button>
 
               <button
-                className={`story-icon-action-btn ${isLiked ? "active" : ""}`}
-                onClick={onLikeToggle}
-                aria-label="Like"
-              >
-                <Heart size={17} />
-                {story.likes}
-              </button>
+  className={`story-icon-action-btn ${isLiked ? "active" : ""}`}
+  onClick={onLikeToggle}
+  aria-label="Like"
+>
+  <Heart size={17} />
+  {formatCount(parseCount(story.likes) + (isLiked ? 1 : 0))}
+</button>
 
               <button
                 className={`story-icon-action-btn ${isBookmarked ? "active" : ""}`}
@@ -114,9 +133,14 @@ export default function StoryHero({
                 <BookmarkPlus size={17} />
               </button>
 
-              <button className="story-icon-action-btn" aria-label="Share">
-                <Share2 size={17} />
-              </button>
+              <button className="story-icon-action-btn" onClick={onShare} aria-label="Share">
+  <Share2 size={17} />
+</button>
+{shareCopied && (
+  <span style={{ fontSize: "13px", color: "#c9a15c", marginLeft: "6px" }}>
+    Link copied!
+  </span>
+)}
 
               <button className="story-icon-action-btn" onClick={onSettingsClick} aria-label="Settings">
                 <Settings size={17} />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ExploreSidebar.css";
 
 const SORT_OPTIONS = ["Trending", "Newest", "Most Liked", "Most Viewed", "Top Rated"];
@@ -11,10 +11,20 @@ const GENRES = [
 
 const LANGUAGES = ["All Languages", "English", "Spanish", "French", "Portuguese", "German"];
 
-export default function ExploreSidebar({ onFilterChange }) {
+export default function ExploreSidebar({ onFilterChange, initialGenres = [] }) {
   const [sortBy, setSortBy] = useState("Trending");
-  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [selectedGenres, setSelectedGenres] = useState(initialGenres);
   const [language, setLanguage] = useState("All Languages");
+
+  useEffect(() => {
+  setSelectedGenres(initialGenres);
+
+  onFilterChange?.({
+    sortBy,
+    genres: initialGenres,
+    language,
+  });
+}, [JSON.stringify(initialGenres)]);
 
   const handleSortChange = (option) => {
     setSortBy(option);
