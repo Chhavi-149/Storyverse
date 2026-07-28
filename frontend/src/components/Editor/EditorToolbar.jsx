@@ -7,7 +7,7 @@ import "./Editor.css";
 
 const FONT_SIZES = ["14px", "16px", "18px", "20px", "24px"];
 
-export default function EditorToolbar({ editorRef, onSaveDraft, onPublish, isSaved }) {
+export default function EditorToolbar({ editorRef, onSaveDraft, onPublish, isSaved, isPublishing }) {
   const [fontSizeIndex, setFontSizeIndex] = useState(1);
 
   const runCommand = (command, value = null) => {
@@ -75,9 +75,9 @@ export default function EditorToolbar({ editorRef, onSaveDraft, onPublish, isSav
           Save Draft
         </button>
 
-        <button className="toolbar-publish-btn" onClick={onPublish}>
+        <button className="toolbar-publish-btn" onClick={onPublish} disabled={isPublishing}>
           <Send size={16} />
-          Publish
+          {isPublishing ? "Publishing..." : "Publish"}
         </button>
       </div>
 

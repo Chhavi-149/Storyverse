@@ -1,10 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import PublicNavbar from "../../components/Common/PublicNavbar";
 import ExploreHero from "../../components/Explore/ExploreHero";
 import ExploreSidebar from "../../components/Explore/ExploreSidebar";
 import StoryGrid from "../../components/Explore/StoryGrid";
 import Footer from "../../components/Footer/Footer";
-import exploreStories from "../../data/exploreStories";
+import { getAllStories } from "../../services/storyService";
 
 const PAGE_SIZE = 6;
 
@@ -17,16 +18,31 @@ const SORT_COMPARATORS = {
 };
 
 export default function ExplorePage() {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchParams] = useSearchParams();
+  const genreFromUrl = searchParams.get("genre");
+  const initialGenres = genreFromUrl ? [genreFromUrl] : [];
+  const initialSearch = searchParams.get("q") || "";
+
+  const [allStories, setAllStories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [searchValue, setSearchValue] = useState(initialSearch);
   const [filters, setFilters] = useState({
     sortBy: "Trending",
-    genres: [],
+    genres: initialGenres,
     language: "All Languages",
   });
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
+  useEffect(() => {
+    getAllStories()
+      .then(setAllStories)
+      .catch((err) => console.error("Failed to load stories:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
   const filteredStories = useMemo(() => {
-    let result = [...exploreStories];
+    let result = [...allStories];
 
     if (searchValue.trim()) {
       const query = searchValue.toLowerCase();
@@ -52,7 +68,7 @@ export default function ExplorePage() {
     }
 
     return result;
-  }, [searchValue, filters]);
+  }, [allStories, searchValue, filters]);
 
   const visibleStories = filteredStories.slice(0, visibleCount);
   const hasMore = visibleCount < filteredStories.length;
@@ -82,17 +98,23 @@ export default function ExplorePage() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 items-start">
 
           <div className="lg:col-span-1">
-            <ExploreSidebar onFilterChange={handleFilterChange} />
+            <ExploreSidebar onFilterChange={handleFilterChange} initialGenres={initialGenres} />
           </div>
 
           <div className="lg:col-span-3">
-            <StoryGrid
-              stories={visibleStories}
-              sortLabel={filters.sortBy}
-              totalCount={filteredStories.length}
-              onLoadMore={handleLoadMore}
-              hasMore={hasMore}
-            />
+            {loading ? (
+              <p style={{ textAlign: "center", padding: "60px 0", color: "#9a9488" }}>
+                Loading stories...
+              </p>
+            ) : (
+              <StoryGrid
+                stories={visibleStories}
+                sortLabel={filters.sortBy}
+                totalCount={filteredStories.length}
+                onLoadMore={handleLoadMore}
+                hasMore={hasMore}
+              />
+            )}
           </div>
 
         </div>

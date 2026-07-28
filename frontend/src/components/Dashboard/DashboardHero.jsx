@@ -1,17 +1,26 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 import "./DashboardLayout.css";
 import "./DashboardHero.css";
 
-export default function DashboardHero({ user: propUser }) {
-  const hour = new Date().getHours();
+export default function DashboardHero() {
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
 
+  const hour = new Date().getHours();
   const greeting =
     hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
 
-  const storedUser = JSON.parse(
-    localStorage.getItem("inkwell_current_user") || "{}"
-  );
-  const userName = propUser?.username || storedUser?.username || "Miriam";
+  const userName = currentUser?.username || "there";
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (!searchValue.trim()) return;
+    navigate(`/explore?q=${encodeURIComponent(searchValue.trim())}`);
+  };
 
   return (
     <section className="hero-section">
@@ -22,14 +31,16 @@ export default function DashboardHero({ user: propUser }) {
           <h1 className="greeting-title">Welcome back, {userName}.</h1>
         </div>
 
-        <div className="hero-search-wrapper">
+        <form className="hero-search-wrapper" onSubmit={handleSearchSubmit}>
           <Search size={16} className="search-icon" />
           <input
             type="text"
             placeholder="Search stories, writers, genres..."
             className="search-input"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
-        </div>
+        </form>
 
       </div>
     </section>
