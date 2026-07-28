@@ -1,7 +1,14 @@
-import topWriters from "../../data/topWriters";
+import { useState, useEffect } from "react";
+import { getTopWriters } from "../../services/rankingsService";
 import "./TopWriters.css";
 
 export default function TopWriters() {
+  const [topWriters, setTopWriters] = useState([]);
+
+  useEffect(() => {
+    getTopWriters().then(setTopWriters).catch((err) => console.error(err));
+  }, []);
+
   return (
     <section className="top-writers-card">
       <div className="top-writers-heading">
@@ -13,16 +20,13 @@ export default function TopWriters() {
         {topWriters.map((writer) => (
           <div key={writer.rank} className="top-writer-row">
             <span className="writer-rank">{writer.rank}</span>
-
             <div className="writer-avatar">
               <img src={writer.avatar} alt={writer.name} />
             </div>
-
             <div className="writer-info">
               <h4>{writer.name}</h4>
               <p>{writer.followers} followers</p>
             </div>
-
             <span className="writer-trophy">🏆</span>
           </div>
         ))}

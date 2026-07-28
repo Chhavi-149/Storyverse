@@ -1,8 +1,15 @@
+import { useState, useEffect } from "react";
 import { Trophy, Clock, Users, PenLine, Flame, CheckCircle } from "lucide-react";
-import activeCompetitions from "../../data/activeCompetitions";
+import { getActiveCompetitions } from "../../services/rankingsService";
 import "./Competitions.css";
 
 export default function ActiveCompetitions() {
+  const [activeCompetitions, setActiveCompetitions] = useState([]);
+
+  useEffect(() => {
+    getActiveCompetitions().then(setActiveCompetitions).catch((err) => console.error(err));
+  }, []);
+
   return (
     <section className="active-competitions-section">
       <div className="active-competitions-container">

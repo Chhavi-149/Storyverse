@@ -1,8 +1,15 @@
+import { useState, useEffect } from "react";
 import { CalendarClock, DollarSign } from "lucide-react";
-import upcomingCompetitions from "../../data/upcomingCompetitions";
+import { getUpcomingCompetitions } from "../../services/rankingsService";
 import "./Competitions.css";
 
 export default function UpcomingCompetitions() {
+  const [upcomingCompetitions, setUpcomingCompetitions] = useState([]);
+
+  useEffect(() => {
+    getUpcomingCompetitions().then(setUpcomingCompetitions).catch((err) => console.error(err));
+  }, []);
+
   return (
     <section className="upcoming-competitions-section">
       <div className="upcoming-competitions-container">

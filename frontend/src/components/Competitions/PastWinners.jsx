@@ -1,8 +1,15 @@
+import { useState, useEffect } from "react";
 import { Trophy } from "lucide-react";
-import pastWinners from "../../data/pastWinners";
+import { getPastWinners } from "../../services/rankingsService";
 import "./Competitions.css";
 
 export default function PastWinners() {
+  const [pastWinners, setPastWinners] = useState([]);
+
+  useEffect(() => {
+    getPastWinners().then(setPastWinners).catch((err) => console.error(err));
+  }, []);
+
   return (
     <section className="past-winners-section">
       <div className="past-winners-container">

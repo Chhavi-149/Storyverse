@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { BookOpen, Flame, ChevronRight } from "lucide-react";
-import writingResources from "../../data/writingResources";
+import { getWritingResources } from "../../services/rankingsService";
 import "./Competitions.css";
 
 const TYPE_ICONS = {
@@ -9,6 +10,12 @@ const TYPE_ICONS = {
 };
 
 export default function WritingResources() {
+  const [writingResources, setWritingResources] = useState([]);
+
+  useEffect(() => {
+    getWritingResources().then(setWritingResources).catch((err) => console.error(err));
+  }, []);
+
   return (
     <section className="writing-resources-section">
       <div className="writing-resources-container">

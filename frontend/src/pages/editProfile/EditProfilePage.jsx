@@ -3,6 +3,7 @@ import DashboardNavbar from "../../components/Dashboard/DashboardNavbar";
 import DashboardSidebar from "../../components/Dashboard/DashboardSidebar";
 import SettingsSidebar from "../../components/EditProfile/SettingsSidebar";
 import EditProfileForm from "../../components/EditProfile/EditProfileForm";
+import ChangePasswordForm from "../../components/EditProfile/ChangePasswordForm";
 import Footer from "../../components/Footer/Footer";
 import currentUser from "../../data/currentUser";
 import "../../components/EditProfile/EditProfile.css";
@@ -35,7 +36,9 @@ export default function EditProfilePage() {
               <EditProfileForm user={currentUser} onSave={handleSave} />
             )}
 
-            {activeSection !== "Edit Profile" && (
+            {activeSection === "Change Password" && <ChangePasswordForm />}
+
+            {activeSection !== "Edit Profile" && activeSection !== "Change Password" && (
               <div className="settings-panel">
                 <h2>{activeSection}</h2>
                 <p className="settings-placeholder-text">
