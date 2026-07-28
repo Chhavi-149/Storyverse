@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { Eye, Star, ArrowUp, ArrowDown, Minus } from "lucide-react";
-import novelRankings from "../../data/novelRankings";
+import { getNovelRankings } from "../../services/rankingsService";
 import "./Rankings.css";
 
 function parseCompactNumber(value) {
@@ -39,6 +40,12 @@ function ChangeIndicator({ change }) {
 }
 
 export default function Leaderboard({ period = "Weekly", sortBy = "Most Viewed" }) {
+  const [novelRankings, setNovelRankings] = useState([]);
+
+  useEffect(() => {
+    getNovelRankings().then(setNovelRankings).catch((err) => console.error(err));
+  }, []);
+
   const field = SORT_FIELDS[sortBy] || "views";
 
   const withStats = novelRankings.map((story) => ({

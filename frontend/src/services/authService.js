@@ -3,14 +3,17 @@ import {
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  reauthenticateWithCredential,
+  updatePassword,
+  EmailAuthProvider,
 } from "firebase/auth";
-
 import {
   doc,
   setDoc,
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase/firebase";
+
 
 
 // ----------------------------
@@ -65,4 +68,12 @@ export async function logout() {
 
 export async function resetPassword(email) {
   await sendPasswordResetEmail(auth, email);
+}
+export async function changePassword(currentPassword, newPassword) {
+  const user = auth.currentUser;
+  if (!user) throw new Error("You must be logged in to change your password.");
+
+  const credential = EmailAuthProvider.credential(user.email, currentPassword);
+  await reauthenticateWithCredential(user, credential);
+  await updatePassword(user, newPassword);
 }

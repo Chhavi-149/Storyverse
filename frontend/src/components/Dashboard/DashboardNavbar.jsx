@@ -12,6 +12,7 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 import "./DashboardNavbar.css";
 
 const NAV_LINKS = [
@@ -24,13 +25,19 @@ const NAV_LINKS = [
 export default function DashboardNavbar({ onOpenSidebar }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { currentUser, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   const user = {
-    name: "User",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop",
+    name: currentUser?.username || "User",
+    avatar: currentUser?.photo || "",
+  };
+
+  const handleSignOut = async () => {
+    setMenuOpen(false);
+    await logout();
+    navigate("/login");
   };
 
   return (
@@ -79,24 +86,23 @@ export default function DashboardNavbar({ onOpenSidebar }) {
           </button>
 
           {/* Notifications */}
-<button
-  className="icon-control-btn"
-  aria-label="Notifications"
-  onClick={() => navigate("/notifications")}
->
-  <Bell size={19} />
-  <span className="notification-dot" />
-</button>
+          <button
+            className="icon-control-btn"
+            aria-label="Notifications"
+            onClick={() => navigate("/notifications")}
+          >
+            <Bell size={19} />
+            <span className="notification-dot" />
+          </button>
 
           {/* Bookmark */}
-         
-<button
-  className="icon-control-btn"
-  aria-label="Bookmarks"
-  onClick={() => navigate("/profile?tab=Bookmarks")}
->
-  <Bookmark size={19} />
-</button>
+          <button
+            className="icon-control-btn"
+            aria-label="Bookmarks"
+            onClick={() => navigate("/profile?tab=Bookmarks")}
+          >
+            <Bookmark size={19} />
+          </button>
 
           {/* Write Button */}
           <button
@@ -114,7 +120,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
               className="profile-trigger-btn"
             >
               <div className="avatar-frame">
-                {!imgError ? (
+                {user.avatar && !imgError ? (
                   <img
                     src={user.avatar}
                     alt={user.name}
@@ -122,7 +128,9 @@ export default function DashboardNavbar({ onOpenSidebar }) {
                     onError={() => setImgError(true)}
                   />
                 ) : (
-                  <div className="avatar-fallback">U</div>
+                  <div className="avatar-fallback">
+                    {user.name?.charAt(0)?.toUpperCase() || "U"}
+                  </div>
                 )}
               </div>
 
@@ -133,60 +141,54 @@ export default function DashboardNavbar({ onOpenSidebar }) {
             </button>
 
             {/* Dropdown Menu */}
-{menuOpen && (
-  <>
-    <div
-      className="dropdown-overlay"
-      onClick={() => setMenuOpen(false)}
-    />
+            {menuOpen && (
+              <>
+                <div
+                  className="dropdown-overlay"
+                  onClick={() => setMenuOpen(false)}
+                />
 
-    <div className="dropdown-menu">
-      <Link
-        to="/profile"
-        onClick={() => setMenuOpen(false)}
-        className="dropdown-item"
-      >
-        <User size={15} /> My Profile
-      </Link>
+                <div className="dropdown-menu">
+                  <Link
+                    to="/profile"
+                    onClick={() => setMenuOpen(false)}
+                    className="dropdown-item"
+                  >
+                    <User size={15} /> My Profile
+                  </Link>
 
-      <Link
-        to="/profile?tab=Stories"
-        onClick={() => setMenuOpen(false)}
-        className="dropdown-item"
-      >
-        <BookOpen size={15} /> My Stories
-      </Link>
+                  <Link
+                    to="/profile?tab=Stories"
+                    onClick={() => setMenuOpen(false)}
+                    className="dropdown-item"
+                  >
+                    <BookOpen size={15} /> My Stories
+                  </Link>
 
-      <Link
-        to="/profile?tab=Bookmarks"
-        onClick={() => setMenuOpen(false)}
-        className="dropdown-item"
-      >
-        <Bookmark size={15} /> Bookmarks
-      </Link>
+                  <Link
+                    to="/profile?tab=Bookmarks"
+                    onClick={() => setMenuOpen(false)}
+                    className="dropdown-item"
+                  >
+                    <Bookmark size={15} /> Bookmarks
+                  </Link>
 
-      <Link
-        to="/edit-profile"
-        onClick={() => setMenuOpen(false)}
-        className="dropdown-item"
-      >
-        <Settings size={15} /> Settings
-      </Link>
+                  <Link
+                    to="/edit-profile"
+                    onClick={() => setMenuOpen(false)}
+                    className="dropdown-item"
+                  >
+                    <Settings size={15} /> Settings
+                  </Link>
 
-      <div className="dropdown-divider" />
+                  <div className="dropdown-divider" />
 
-      <button
-        onClick={() => {
-          setMenuOpen(false);
-          navigate("/login");
-        }}
-        className="dropdown-item logout"
-      >
-        <LogOut size={15} /> Sign Out
-      </button>
-    </div>
-  </>
-)}
+                  <button onClick={handleSignOut} className="dropdown-item logout">
+                    <LogOut size={15} /> Sign Out
+                  </button>
+                </div>
+              </>
+            )}
              
           </div>
         </div>
