@@ -1,20 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardNavbar from "../../components/Dashboard/DashboardNavbar";
 import DashboardSidebar from "../../components/Dashboard/DashboardSidebar";
 import SettingsSidebar from "../../components/EditProfile/SettingsSidebar";
 import EditProfileForm from "../../components/EditProfile/EditProfileForm";
 import ChangePasswordForm from "../../components/EditProfile/ChangePasswordForm";
 import Footer from "../../components/Footer/Footer";
-import currentUser from "../../data/currentUser";
+import { useAuth } from "../../context/AuthContext";
+import { getUserProfile, updateUserProfile } from "../../services/userService";
 import "../../components/EditProfile/EditProfile.css";
 
 export default function EditProfilePage() {
+  const { currentUser } = useAuth();
   const [dashboardSidebarOpen, setDashboardSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("Edit Profile");
 
-  const handleSave = (updatedData) => {
-    console.log("Saving profile changes:", updatedData);
-    // Real save logic (API/Firebase call) goes here later
+  const [profile, setProfile] = useState(null);
+  const [saveMessage, setSaveMessage] = useState("");
+
+  useEffect(() => {
+    if (!currentUser) return;
+    getUserProfile(currentUser).then(setProfile);
+  }, [currentUser]);
+
+  const handleSave = async (updatedData) => {
+    if (!currentUser) return;
+    try {
+      await updateUserProfile(currentUser.uid, {
+        username: updatedData.username,
+        website: updatedData.website,
+        bio: updatedData.bio,
+        photo: updatedData.avatar,
+      });
+      setProfile((prev) => ({
+        ...prev,
+        ...updatedData,
+        displayName: updatedData.username,
+      }));
+      setSaveMessage("Profile updated!");
+      setTimeout(() => setSaveMessage(""), 2500);
+    } catch (err) {
+      console.error(err);
+      setSaveMessage("Couldn't save changes. Please try again.");
+    }
   };
 
   return (
@@ -32,8 +59,17 @@ export default function EditProfilePage() {
           <div className="edit-profile-layout">
             <SettingsSidebar activeSection={activeSection} onSectionChange={setActiveSection} />
 
-            {activeSection === "Edit Profile" && (
-              <EditProfileForm user={currentUser} onSave={handleSave} />
+            {activeSection === "Edit Profile" && profile && (
+              <div>
+                <EditProfileForm user={profile} onSave={handleSave} />
+                {saveMessage && (
+                  <p style={{ color: "#c9a15c", marginTop: "8px" }}>{saveMessage}</p>
+                )}
+              </div>
+            )}
+
+            {activeSection === "Edit Profile" && !profile && (
+              <p style={{ color: "#9a9488" }}>Loading profile...</p>
             )}
 
             {activeSection === "Change Password" && <ChangePasswordForm />}

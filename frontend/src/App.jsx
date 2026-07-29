@@ -33,15 +33,43 @@ function App() {
           }
         />
         <Route path="/explore" element={<ExplorePage />} />
-        <Route path="/editor" element={<EditorPage />} />
+        <Route
+          path="/editor"
+          element={
+            <ProtectedRoute>
+              <EditorPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/reader/:storyId/:chapterNumber" element={<ReaderPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/edit-profile" element={<EditProfilePage />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            <ProtectedRoute>
+              <EditProfilePage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/story/:storyId" element={<StoryPage />} />
         <Route path="/competitions" element={<CompetitionsPage />} />
         <Route path="/rankings" element={<RankingsPage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
-        
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <NotificationsPage />
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
     </AuthProvider>
   );

@@ -1,4 +1,14 @@
 import "./DashboardFooter.css";
+import { Link } from "react-router-dom";
+
+// Map each visible label to its real route.
+// Labels not in this map have no page yet, so they stay as "#".
+const LINK_ROUTES = {
+  "Explore Stories": "/explore",
+  "Novel Rankings": "/rankings",
+  "Start Writing": "/editor",
+  "Competitions": "/competitions",
+};
 
 const FOOTER_LINKS = {
   READ: ['Explore Stories', 'Novel Rankings', 'Trending Genres', 'New Releases'],
@@ -26,9 +36,18 @@ export default function DashboardFooter() {
           <div key={heading} className="footer-column">
             <h4>{heading}</h4>
             <ul>
-              {links.map((link) => (
-                <li key={link}><a href="#">{link}</a></li>
-              ))}
+              {links.map((link) => {
+                const route = LINK_ROUTES[link];
+                return (
+                  <li key={link}>
+                    {route ? (
+                      <Link to={route}>{link}</Link>
+                    ) : (
+                      <a href="#">{link}</a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}

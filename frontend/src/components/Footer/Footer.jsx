@@ -1,5 +1,6 @@
 import "./Footer.css";
 import { BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import {
   FaFacebookF,
@@ -39,9 +40,10 @@ function Footer() {
 
           <h3>Quick Links</h3>
 
-          <a href="#">Explore</a>
-          <a href="#">Competitions</a>
-          <a href="#">Rankings</a>
+          <Link to="/explore">Explore</Link>
+          <Link to="/competitions">Competitions</Link>
+          <Link to="/rankings">Rankings</Link>
+          {/* TODO: no /community route yet */}
           <a href="#">Community</a>
 
         </div>
@@ -50,6 +52,7 @@ function Footer() {
 
           <h3>Resources</h3>
 
+          {/* TODO: create these pages + routes, then swap to <Link to="..."> */}
           <a href="#">Help Center</a>
           <a href="#">Terms</a>
           <a href="#">Privacy</a>
